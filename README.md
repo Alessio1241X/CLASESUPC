@@ -1,1 +1,1 @@
-git rm HOJAPRUEBA.vcxproj
+
