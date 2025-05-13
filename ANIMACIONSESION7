@@ -1,0 +1,19 @@
+#include "pch.h"
+#include<iostream>
+using namespace System;
+using namespace std;
+int main()
+{
+    Console::CursorVisible = false;
+
+    for (int i = 0; i <= 10; i++) {
+        system("cls");
+        Console::SetCursorPosition(i, 5);
+        cout << "UPC";
+        _sleep(30);
+    }
+
+
+
+    return 0;
+}
