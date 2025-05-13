@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	
+	int n, x;
+	do {
+		cout << "Ingrese x: "; cin >> x;
+	} while (!(x >= 0));//validar que x>=0
+	do {
+		cout << "Ingrese n: "; cin >> n;
+	} while (!(n >= 2));//validar que n>=2
+
+	float sum = 0;
+	for (int i=1; i <= n; i++) {
+		sum += (float)(x + i) / (float)(x + 2 * i);
+
+	}
+	cout << "El resultado es: " << sum << endl;
+
+	return 0;
+}
