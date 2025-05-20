@@ -1,0 +1,39 @@
+#include "pch.h"
+#include <iostream>
+#include <Windows.h>
+
+#define N 5
+
+using namespace System;
+using namespace std;
+
+int main()
+{
+    system("color 0b");
+
+    for (int i = 0; i <= N; i++) {
+        system("cls");
+        COORD p = { i,i };
+        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), p);
+        cout << "@";
+        Sleep(250);
+    }
+
+    for (int i = 0; i <= N; i++) {
+        system("cls");
+        COORD p = { 5 - i,5 };
+        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), p);
+        cout << "@";
+        Sleep(250);
+    }
+
+    for (int i = 0; i <= N; i++) {
+        system("cls");
+        COORD p = { 0 + i,5 - i };
+        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), p);
+        cout << "@";
+        Sleep(250);
+    }
+
+    return 0;
+}
