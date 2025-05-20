@@ -1,0 +1,51 @@
+#include "pch.h"
+#include<iostream>
+using namespace System;
+using namespace std;
+int main()
+{
+    Console::CursorVisible = false;
+    int x = 0, y = 0;
+
+    //Predionar una tecla para iniciar la animacion.
+
+    cin.get();
+    while (x <= 20) {
+
+        //system("cls");
+
+        Console::SetCursorPosition(x, y);
+
+        cout << "* ";
+
+        _sleep(100);
+
+        x++;
+
+    }
+    while (x > 0) {
+        Console::SetCursorPosition(x, y);
+        cout << "*";
+        _sleep(100);
+        y++;
+
+        x--;
+
+    }
+
+    while (x <= 20) {
+
+        //system("cls");
+
+        Console::SetCursorPosition(x, y);
+
+        cout << "* ";
+
+        _sleep(100);
+
+        x++;
+
+    }
+    
+    return 0;
+}
