@@ -1,0 +1,93 @@
+#include <iostream>
+#include<math.h>
+
+using namespace std;
+int Suma(int a, int b) {
+	int c = a + b;
+	cout << "La suma es: " << c;
+	return c;
+}
+int Resta(int a, int b) {
+	int c = a - b;
+	cout << "La resta es: " << c;	
+	return c;
+}
+int Producto(int a, int b) {
+	int c= a * b;
+	cout << "El producto es: " << c;
+	return c;
+}
+float Division(int a, int b) {
+	int c= a / b;
+	cout << "La division es: " << c;
+	return c;
+}
+double Modulo(int a, int b) {
+	int c= a % b;
+	return c;
+}
+double Raiz(int a) {
+	int c= sqrt(a);
+	return c;
+}
+double Potencia(int a, int b) {
+	int c= pow(a, b);
+	return c;
+}
+
+int factorial(int a) {//OTRA FORMA DE HACER FACTORIAL
+	if (a == 1) {
+		return 1;
+	}
+	else {
+		return a * factorial(a - 1);
+	}
+}
+int Salir() {
+	return 0;
+}
+
+int main(){
+	int opcion = 0;
+	cout << "\tMENU\n1.Suma\n2.Resta\n3.Producto\n4.Division\n5.Modulo\n6.Raiz\n7.Potencia\n8.Factorial\n9.Salir"; 
+	cout << "\nElija una opcion: "; cin >> opcion;
+
+	if (opcion == 1) {
+		int a, b;
+		cout << "Ingrese el valor de a: "; cin >> a;
+		cout << "Ingrese el valor de b: "; cin >> b;
+		cout << endl << Suma(a, b);
+	}
+	else if (opcion == 2) {
+		int a, b;
+		cout << "Ingrese el valor de a: "; cin >> a;
+		cout << "Ingrese el valor de b: "; cin >> b;
+		cout << endl << Resta(a, b);
+	}else if (opcion == 3) {
+		int a, b;
+		cout << "Ingrese el valor de a: "; cin >> a;
+		cout << "Ingrese el valor de b: "; cin >> b;
+		cout << endl << Producto(a, b);
+	}else if (opcion == 4) {
+		int a, b;
+		cout << "Ingrese el valor de a: "; cin >> a;
+		cout << "Ingrese el valor de b: "; cin >> b;
+		cout << endl << Division(a, b);
+	}
+	else if (opcion == 5) {
+		int a, b;
+		cout << "Ingrese el valor de a: "; cin >> a;
+		cout << "Ingrese el valor de b: "; cin >> b;
+		cout << endl << Modulo(a, b);
+	}else if (opcion == 6) {
+		int a, b;
+		cout << "Ingrese el valor de a: "; cin >> a;
+		
+		cout << endl << factorial(a);
+	}
+	else {
+		Salir();
+	}
+		  return 0;
+	}
+
