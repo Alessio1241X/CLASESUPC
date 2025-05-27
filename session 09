@@ -1,0 +1,209 @@
+#include<iostream>
+using namespace std;
+int Sumar(int a, int b) {//INICIO DE DATO 
+	return a + b;
+
+}//LA FUNCION SE CREA ANTES DE TODO
+
+int main() {
+	int a, b;
+	cout << "Ingrese el valor de a: "; cin >> a;
+	cout << "Ingrese el valor de b: "; cin >> b;
+	int c = a + b;
+	cout << "\nLa suma es: " << c << endl;
+
+
+
+	return 0;
+}
+
+#include<iostream>
+using namespace std;
+void Saludar() {//DECLARACION
+	cout << "HOLA MUNDO";
+	cout << "\nBUENOS DIAS";//CUERPO
+	cout << endl;
+}
+int main() {
+	Saludar();//INVOCACION
+	Saludar();//SE PUEDE INVOCAR
+	Saludar();//VARIAS VECES.....
+
+	return 0;
+}
+#include<iostream>
+using namespace std;
+int Sumar(int a,int b) {
+	cout << "Sumando a y b!";
+	int c = a + b;
+	cout << "\nLa suma es: " << c;
+	return c;//SE EJECUTA HASTA AQUI....
+	cout << "Finalizacion de la funcion";
+
+}
+
+int main() {
+	
+	Sumar(5, 6);
+
+	return 0;
+}
+#include<iostream>
+using namespace std;
+int funcion(int a) {
+	//si a es menor que 5 , devuelva 2a
+	//sino, devuelve a-1
+	if (a < 5) {
+		return 2 * a;
+	}
+
+		return a - 1;
+	
+}
+
+int main() {
+	
+	cout << funcion(2);
+	return 0;
+}
+#include<iostream>
+using namespace std;
+int funcion(int b,int a=1) {//primero obligatorio luego opcionales
+	//si a es menor que 5 , devuelva 2a
+	//sino, devuelve a-1
+	if (a < 5) {
+		return 2 * a;
+	}
+
+		return a - 1;
+	
+}
+
+int main() {
+	
+	cout << funcion(5,20);
+	return 0;
+}
+#include<iostream>
+using namespace std;
+
+long long factorial(int n) {
+	long long resultado = 1;
+	for (int i = 1; i <= n; i++) {//operacion para factorial con for
+		resultado *=i;
+	}
+	return resultado;
+}
+
+int main() {
+	
+	cout << "\nEl factorial de 5 es: " << factorial(5);
+	return 0;
+}
+#include<iostream>
+using namespace std;
+
+int factorial(int n) {//OTRA FORMA DE HACER FACTORIAL
+	if (n == 1) {
+		return 1;
+	}
+	else {
+		return n * factorial(n - 1);
+	}
+}
+
+int main() {
+	
+	cout << "\nEl factorial de 5 es: " << factorial(5);
+	return 0;
+}
+//EJERCICIO4 HOJAS EJERCICIOS SEMANA9
+#include<iostream>
+#include<time.h>
+using namespace std;
+
+int Num_aleatorio() {
+	return rand()%40 + 1;
+	
+}
+
+int main() {
+	srand(time(NULL));
+	cout << Num_aleatorio() << endl;
+	cout << Num_aleatorio() << endl;
+	cout << Num_aleatorio() << endl;
+	cout << Num_aleatorio() << endl;
+}
+#include "pch.h"
+#include<iostream>
+#include"conio.h"
+using namespace std;
+using namespace System;
+int main()
+
+{
+    while (true) {
+        if (_kbhit()) {//si presiono tecla
+            char k;
+            k = _getch();//obtener la tecla
+            cout << (int)k << endl;//imprimir la tecla
+        }
+    }
+
+
+    return 0;
+}
+//TAMAÑO DE VENTANA
+#include "pch.h"
+#include<iostream>
+#include"conio.h"
+#define ABAJO 80
+#define ARRIBA 72
+#define IZQUIERDA 75
+#define DERECHA 77
+using namespace std;
+using namespace System;
+
+void Ventana() {
+    Console::SetWindowSize(80, 40);//AQUI SE DEFINE EL TAMAÑO 80*40
+    Console::CursorVisible = false;//ocultar el cursor
+}
+void gotoxy(int x, int y) {
+    Console::SetCursorPosition(x, y);//ir a una posicion
+}
+void dibujar(int x, int y) {
+    gotoxy(x, y); cout << "UPC";//dibujar UPC
+}
+void borrar(int x, int y) {
+    gotoxy(x, y); cout << "   ";//borrar UPC (CANTIDAD DE ESPACIO DEPENIENDO LETRAS)
+}
+
+int main(){
+    Ventana(); int posx = 60; int posy = 15;
+    while (true) {//configurar movilidad
+        borrar(posx, posy);
+        if (_kbhit()) {
+            char k; k = _getch();
+            if (k == ARRIBA) {
+                posy--;
+            }
+            if (k == ABAJO) {
+                posy++;
+            }
+            if (k == DERECHA) {
+                posx++;
+            }
+            if (k == IZQUIERDA) {
+                posx--;
+            }
+
+        }
+
+        dibujar(posx, posy);
+        _sleep(50);
+
+    }
+
+
+    return 0;
+}
