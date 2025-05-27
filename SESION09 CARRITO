@@ -1,0 +1,76 @@
+ ANIMACION DE CARRITO
+
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include "conio.h"
+using namespace System;
+using namespace std;
+#define ARRIBA       72 
+#define ABAJO        80
+#define IZQUIERDA    75
+#define DERECHA      77
+
+
+void cursor(int x, int y)
+{
+    Console::SetCursorPosition(x, y);
+}
+void ventana()
+{
+    Console::SetWindowSize(80, 30);
+    Console::CursorVisible = false;//OCULTAR EL CURSOR
+}
+
+void dibujar(int d, int x, int y)//D-> DIRECCION
+{//POSICION X, POSICION Y
+    if (d == 1)
+    {
+        cursor(x, y);     cout << "__";
+        cursor(x, y + 1); cout << ".-'--*-._";
+        cursor(x, y + 2); cout << "'-O---O--'";
+
+    }
+
+    if (d == 2)
+    {
+        cursor(x, y);     cout << "        __";
+        cursor(x, y + 1); cout << " _.-*--'-.";
+        cursor(x, y + 2); cout << "'--O---O-'";
+
+    }
+}
+void borrar(int x, int y)
+{
+    cursor(x, y);     cout << "          ";
+    cursor(x, y + 1); cout << "          ";
+    cursor(x, y + 2); cout << "          ";
+}
+int main() {
+    ventana();
+    int posx = 60, posy = 15;
+    int direccion = 1;
+
+    dibujar(direccion, posx, posy);
+    while (1)
+    {
+        if (_kbhit())
+        {
+            char tecla;
+            tecla = getch();
+
+            //borrar
+            borrar(posx, posy);
+
+            //mover
+            if (tecla == DERECHA) { posx++; direccion = 1; }
+            if (tecla == IZQUIERDA) { posx--; direccion = 2; }
+            if (tecla == ARRIBA)  posy--;
+            if (tecla == ABAJO)  posy++; 
+           
+            //dibujar
+            dibujar(direccion, posx, posy);
+        }
+    }
+    return 0;
+}
