@@ -1,0 +1,191 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    //arreglo de 5 notas de tipo int
+    int notas[5] = {20,18,20,17,10 };
+    //arrelo de 5 cursos de tipo string
+    string cursos[5] = { "PC1","PC2","EP","TF","EF" };
+    for (int i = 0; i < 5; i++) {//i toma los valores 0,1,2,3,4
+        //mostramos el curso[i] y notas [i]
+        cout << cursos[i] << "\t : " << notas[i] << endl;
+
+    }
+    return 0;
+}
+#include <iostream>
+using namespace std;
+int main()
+{
+    //arreglo de 5 notas de tipo int
+    int notas[5] = {20,18,20,17,10 };
+    //arrelo de 5 cursos de tipo string
+    string cursos[5] = { "PC1","PC2","EP","TF","EF" };
+    notas[4] = 20;//modificar el arreglo en la posicion 4
+    for (int i = 0; i < 5; i++) {//i toma los valores 0,1,2,3,4
+        //mostramos el curso[i] y notas [i]
+        cout << cursos[i] << "\t : " << notas[i] << endl;
+
+    }
+    return 0;
+}
+#include <iostream>
+using namespace std;
+int main(){
+    int N ;
+    cout << "Ingrese la cantidad de cursos favoritos: "; cin >> N;
+    //validar que N sea menor a 100
+    string cursos_favoritos[100];//arreglo de tmaño 100
+    for (int i = 0; i < N; i++) {//recorrer de 0 a N-1
+        cout << "Ingresa tu curso favorito: "; cin >> cursos_favoritos[i];//ingresar valores
+    }
+    cout << "Tus cursos favoritos son: " << endl;//orden favorito
+    for (int j = N - 1; j >= 0; j--) {
+        //mostrar los valores
+        cout << " - " << cursos_favoritos[j] << endl;
+    }
+    return 0;
+}
+#include <iostream>
+using namespace std;
+int main(){
+    int calificaciones[5];//<-declaramos
+    float suma = 0,promedio=0;
+    for (int i = 0; i < 5; i++) {
+        cout << "Ingresa las calificaciones obtenidas: " << i + 1 << ": "; cin >> calificaciones[i];
+        suma += calificaciones[i];
+        promedio = suma / 5;
+   }
+    cout << "\nEl promedio es: " <<promedio<< endl;
+    //hallar el mayor
+    int mayor = calificaciones[0];
+    //asumiendo que el mayor es el primer elemento
+    for (int i = 0; i < 5; i++) {//recorremos el arreglo
+        if (mayor < calificaciones[i]) {//verificar si el mayor<algo
+            mayor = calificaciones[i];//actualizamos si cumple
+        }
+    }
+    cout << "La mayor nota es: " << mayor << endl;
+
+    return 0;
+}
+
+//NUMEROS DE MENOR A MAYOR(para examen final)
+#include <iostream>
+#include<string.h>
+using namespace std;
+int main(){
+    int aux;
+    int calificaciones[5] = {20,18,10,16,12};
+    //ordenamos de menor a mayor
+    //bubble sort u ordenamiento de burbuja 
+    for (int i = 0; i < 5; i++) {//recorremos desde el primer elemento
+        for (int j = 0; j < 5; j++) {//ylo comparamos con los demas
+            if (calificaciones[i] < calificaciones[j]) {//si es menor, lo cambiamos de posicion
+                aux = calificaciones[i];//auxiliar toma el valor de calificaciones[i]
+                calificaciones[i] = calificaciones[j];//calificaciones[i] se actualiza al valor de calificaciones[j]
+                calificaciones[j] = aux;//calificaciones[j] toma el valor de auxiliar
+            }//esto luego puede ser llamado swap(calificaciones[i],calificaciones[j])                
+        }        
+    }
+    //mostramos:
+    for (int i = 0; i < 5; i++) {
+        cout << calificaciones[i] << " ";
+    }
+    return 0;
+}
+//COMRPOBAR SI UN NUMERO ESTA EN LAS NOTAS
+#include <iostream>
+#include<string.h>
+using namespace std;
+int main(){
+    int notas[4] = { 20,18,10,11 };
+    int nota_buscar,posicion=0;
+    bool encontrado = false;
+    cout << "Ingresar la nota a buscar: "; cin >> nota_buscar;
+    for (int i = 0; i < 4; i++) {
+        if (notas[i] == nota_buscar) {
+            cout << "VALOR ENCONTRADO";
+           
+            posicion = i;
+            cout << "\nEn la posicion: " << posicion;
+            encontrado = true;
+        }
+    }
+   if (encontrado == false) {
+      cout << "VALOR NO ENCONTRADO";
+   }
+    return 0;
+}
+//COMRPOBAR LA CANTIDAD DE VECES QUE APARECE UN NUMERO
+#include <iostream>
+#include<string.h>
+using namespace std;
+int main(){
+    //EN BASE A ESTAS CALIFICACIONES C
+    //HALLAR EL NUMERO DE VCES QUE SACO 20
+    int notas[5] = { 20,18,17,20,12 };
+    int veces = 0;
+    for (int i = 0; i < 5; i++) {
+        if (notas[i] == 20) {
+            veces++;//veces+=1
+        }
+    }
+    cout << "El 20 aparece: " << veces<<" veces" << endl;
+
+    return 0;
+}
+//VER CODIGO
+#include <iostream>
+#include<string.h>
+using namespace std;
+int main(){
+    float suma = 0,a,b,promedio=0;
+    
+    int notas_a[3];
+
+    for (int i = 0; i < 3; i++) {
+        cout << "INGRESE LAS NOTAS: "; cin >> a;
+        suma += a;
+       promedio = suma / 3;
+       
+    }
+    cout << "\nEl promedio es: " <<promedio << endl;
+    
+   
+    int menor = notas_a[0];
+    int position;
+    if (promedio < 10) {
+        cout << "Ingrese una nueva nota: "; cin >> b;
+        for (int i = 0; i < 3; i++) {
+            if (menor > notas_a[i]) {
+                menor = notas_a[1];
+                position = i;
+            }
+       }
+        notas_a[position] = b;
+    }
+    for (int i = 0; i < 3; i++) {
+        suma += notas_a[i];
+        promedio = suma / 3;
+    }
+    cout << "El nuevo promedio es: " << promedio << endl;
+    return 0;
+}
+//CALIFICACIONES DE ESTUDIANTES APROBADOS
+#include <iostream>
+#include<string.h>
+using namespace std;
+int main(){
+    float calificaciones[5];
+    int cantidadaprobados = 0;
+    for (int i = 0; i < 5; i++) {
+        cout << "Ingrese la calificacion: " << i + 1 << ": "; cin >> calificaciones[i];
+        if (calificaciones[i] >= 12.5) {
+            cantidadaprobados++;
+        }
+    }
+    cout << "La cantidad de aprobados es: " << cantidadaprobados << endl;
+    return 0;
+}
+
