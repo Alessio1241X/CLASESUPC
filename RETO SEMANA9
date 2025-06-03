@@ -4,34 +4,31 @@
 using namespace std;
 int Suma(int a, int b) {
 	int c = a + b;
-	cout << "La suma es: " << c;
 	return c;
 }
 int Resta(int a, int b) {
-	int c = a - b;
-	cout << "La resta es: " << c;	
+	int c = a - b;	
 	return c;
 }
 int Producto(int a, int b) {
-	int c= a * b;
-	cout << "El producto es: " << c;
+	int c = a * b;
 	return c;
 }
 float Division(int a, int b) {
-	int c= a / b;
-	cout << "La division es: " << c;
+	int c = a / b;
+	
 	return c;
 }
 double Modulo(int a, int b) {
-	int c= a % b;
+	int c = a % b;
 	return c;
 }
 double Raiz(int a) {
-	int c= sqrt(a);
+	int c = sqrt(a);
 	return c;
 }
 double Potencia(int a, int b) {
-	int c= pow(a, b);
+	int c = pow(a, b);
 	return c;
 }
 
@@ -47,47 +44,62 @@ int Salir() {
 	return 0;
 }
 
-int main(){
+int main() {
 	int opcion = 0;
-	cout << "\tMENU\n1.Suma\n2.Resta\n3.Producto\n4.Division\n5.Modulo\n6.Raiz\n7.Potencia\n8.Factorial\n9.Salir"; 
+	cout << "\tMENU\n1.Suma\n2.Resta\n3.Producto\n4.Division\n5.Modulo\n6.Raiz\n7.Potencia\n8.Factorial\n9.Salir";
 	cout << "\nElija una opcion: "; cin >> opcion;
 
 	if (opcion == 1) {
 		int a, b;
 		cout << "Ingrese el valor de a: "; cin >> a;
 		cout << "Ingrese el valor de b: "; cin >> b;
-		cout << endl << Suma(a, b);
+		cout << "\nLa suma es: " << Suma(a, b);
 	}
 	else if (opcion == 2) {
 		int a, b;
 		cout << "Ingrese el valor de a: "; cin >> a;
 		cout << "Ingrese el valor de b: "; cin >> b;
-		cout << endl << Resta(a, b);
-	}else if (opcion == 3) {
+		cout << "\nLa resta es: " << Resta(a, b);
+	}
+	else if (opcion == 3) {
 		int a, b;
 		cout << "Ingrese el valor de a: "; cin >> a;
 		cout << "Ingrese el valor de b: "; cin >> b;
-		cout << endl << Producto(a, b);
-	}else if (opcion == 4) {
+		cout << "\nEl producto es: " << Producto(a, b);
+	}
+	else if (opcion == 4) {
 		int a, b;
 		cout << "Ingrese el valor de a: "; cin >> a;
 		cout << "Ingrese el valor de b: "; cin >> b;
-		cout << endl << Division(a, b);
+		cout << "\nLa division es: " << Division(a, b);
 	}
 	else if (opcion == 5) {
 		int a, b;
 		cout << "Ingrese el valor de a: "; cin >> a;
 		cout << "Ingrese el valor de b: "; cin >> b;
-		cout << endl << Modulo(a, b);
-	}else if (opcion == 6) {
-		int a, b;
-		cout << "Ingrese el valor de a: "; cin >> a;
-		
-		cout << endl << factorial(a);
+		cout << "\nEl modulo es: "<< Modulo(a, b);
 	}
-	else {
+	else if (opcion == 6) {
+		int a;
+		cout << "Ingrese el valor de a: "; cin >> a;
+
+		cout << "\nLa raiz es: " << Raiz(a);
+	}
+	else if (opcion == 7) {
+		int a,b;
+		cout << "Ingrese el valor de a: "; cin >> a;
+		cout << "Ingrese el valor de b: "; cin >> b;
+
+		cout << "\nLa potencia es: " << Potencia(a, b);
+
+	}
+	else if (opcion == 8) {
+		int a;
+		cout << "Ingrese el valor de a: "; cin >> a;
+		cout << "\nEl factorial es: " << factorial(a);
+	}
+	else if(opcion==9){
 		Salir();
 	}
-		  return 0;
-	}
-
+	return 0;
+}
