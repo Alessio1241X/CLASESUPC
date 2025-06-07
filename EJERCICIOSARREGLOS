@@ -1,0 +1,157 @@
+/*1.Escribe un programa que defina un vector
+ de numeros y calcule la suma de sus
+ elementos*/
+/*
+#include<iostream>
+#include<conio.h>
+using namespace std;
+int main() {
+	int numeros[5] = { 1,2,3,4,5 };
+	int suma = 0;
+	for (int i = 0; i < 5; i++) {
+		suma += numeros[i];
+	}
+	cout << "\nLa suma de los elementos es: " << suma<< endl;
+	getch();
+	return 0;
+}*/
+/*2.Escribe un programa que defina un arreglo de numeros y
+calcule la multiplicacion acumulada de sus elementos*/
+/*
+#include<iostream>
+#include<conio.h>
+using namespace std;
+int main() {
+	int numeros[5] = { 1,2,3,4,5 };
+	int multi = 1;
+	for (int i = 0; i < 5; i++) {
+		multi *= numeros[i];
+	}
+	cout << "\nLa multiplicacion de elementos: " << multi << endl;
+
+	return 0;
+}*/
+/*3.Escribe un programa que lea de la entrada estandar un
+arreglo de numeros y muestre en la salida los numeros
+del arreglo con sus indices asociados*/
+/*
+#include<iostream>
+#include<conio.h>
+using namespace std;
+int main() {
+	int numeros[100];
+	int n;
+	cout << "Digite la cantidad de elementos: "; cin >> n;
+	for (int i = 0; i < n; i++) {
+		cout << "Digite un numero: "; cin >> numeros[i];
+	}
+	for (int i = 0; i < n; i++) {
+		cout << i << " -> " << numeros[i] << endl;
+	}
+	return 0;
+}*/
+/*4.Escriba un programa que defina un arreglo de numeros
+y muestre en la salida el arreglo en orden inverso
+del ultimo al primer elemento*/
+/*
+#include<iostream>
+using namespace std;
+int main() {
+	int numeros[100],n;
+	cout << "Ingrese la cantidad de elementos: "; cin >> n;//Se guardan cantidad de elementos
+	for (int i = 0; i < n; i++) {
+		cout << "Ingrese un numero: "; cin >> numeros[i];//se guardan los numeros
+	}
+	for (int i = n - 1; i >= 0; i--) {
+		cout<<" -> "<<numeros[i] << endl;//se ordena
+	}
+	return 0;
+}*/
+/*5.Desarrolle un programa que lea de la entrada
+de un arreglo de enteros y determine el mayor
+elemento*/
+/*
+#include<iostream>
+using namespace std;
+int main() {
+	int numeros[100], n,mayor=0;
+	cout << "Ingrese la cantidad de elementos que desea en su arreglo: "; cin >> n;
+	for (int i = 0; i < n; i++) {
+		cout <<i+1<< ". Ingrese un numero: "; cin >> numeros[i];
+		if (numeros[i] > mayor) {
+			mayor = numeros[i];
+		}
+	}
+	cout << "\nEl numero mayor es: " << mayor << endl;
+	return 0;
+}*/
+/*6. Escribe un programa que defina un vector de números y calcule si existe
+algún número en el vector cuyo valor equivale a la suma del resto de números
+del vector.*/
+/*
+#include<iostream>
+using namespace std;
+
+int main() {
+	int numeros[100]; //Definimos un arreglo
+	int suma = 0, mayor = 0,n;
+
+	cout << "Ingrese la cantidad de elementos: "; cin >> n;
+	for (int i = 0; i < n; i++) {
+		cout << i+1<< ". Digite un numero: "; cin >> numeros[i];
+		suma += numeros[i];
+
+		if (numeros[i] > mayor) { //Determinamos cual es el numero mayor, ya que
+			mayor = numeros[i];//el unico numero que puede ser la suma de los
+		}					  //demas es el numero mayor
+	}
+
+	if (mayor == suma - mayor) {//comparamos si el numero mayor es igual a suma menos el numero mayor
+		cout << "El numero " << mayor << " es la suma de los demas";
+	}
+	else {
+		cout << "No existe ningun numero que sea la suma de los demas";
+	}
+
+	return 0;
+}*/
+/*7.Realiza un programa que defina dos vectores de caracteres y después almacene el contenido de ambos 
+vectores en un nuevo vector, situando en primer lugar los elementos del primer vector seguido por los 
+elementos del segundo vector. Muestre el contenido del nuevo vector en la salida estándar.*/
+/*
+#include<iostream>
+using namespace std;
+int main() {
+	char letras1[] = { 'a','b','c','d','e' };
+	char letras2[] = { 'f','g','h','i','j' };
+	char letras3[10];
+	//copiando los elementos de letras 1 hacia letras 3
+	for (int i = 0; i < 5; i++) {
+		letras3[i] = letras1[i];
+	}
+	//copiando los elementos de letras 2 hacia letras 3
+	for (int i = 5; i < 10; i++) {
+		letras3[i] = letras2[i-5];
+	}
+	//procedemos a poner el nuevo arreglo
+	for (int i = 0; i < 10; i++) {
+		cout << letras3[i] << endl;
+	}
+	return 0;
+}*/
+/*8.Hacer un programa que lea 5 números en un arreglo, los copie a otro arreglo 
+multiplicados por 2 y muestre el segundo arreglo.*/
+#include<iostream>
+using namespace std;
+int main() {
+	int numeros[100],numeros2[100],n;
+	cout << "Ingrese la cantidad de elementos del arreglo: "; cin >> n;
+	for (int i = 0; i < n; i++) {
+		cout << "Ingrese un numero: "; cin >> numeros[i];
+		numeros2[i] = numeros[i]*2;
+	}
+	for (int i = 0; i < n; i++) {
+		cout <<numeros[i]<<"*2 ="<< numeros2[i] << endl;
+	}
+	return 0;
+}
