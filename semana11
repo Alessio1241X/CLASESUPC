@@ -283,4 +283,110 @@ int main() {
 	cout<<"El numero menor es: "<< Menor(M);
 	
 }
+//CODIGO DEL PROFE
+#include <iostream>
+#define COLUMNAS 5
+#define FILAS 6
+using namespace std;
 
+void generar(int A[FILAS][COLUMNAS]) {
+    for (int i = 0; i < FILAS; i++) { // recorro filas
+        for (int j = 0; j < COLUMNAS; j++) { //columnas
+            A[i][j] = 1 + rand() % 9; // asignar un valor
+        }
+    }
+}
+
+void imprimr(int A[FILAS][COLUMNAS]) {
+    for (int i = 0; i < FILAS; i++) { // recorro filas
+        for (int j = 0; j < COLUMNAS; j++) { //columnas
+            cout << A[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+void imprimir2(int A[FILAS][COLUMNAS]) {
+    for (int i = 0; i < FILAS; i++) { // recorro filas
+        for (int j = 0; j < COLUMNAS; j++) { //columnas
+            if (A[i][j] == 7) {
+                cout << "# ";
+            }
+            else {
+                cout << "- ";
+            }
+        }
+        cout << endl;
+    }
+}
+
+int Mayor(int A[FILAS][COLUMNAS]) {
+    int mayor = A[0][0];
+    for (int i = 0; i < FILAS; i++) {
+        for (int j = 0; j < COLUMNAS; j++) {
+            if (mayor < A[i][j]) {
+                mayor = A[i][j];
+            }
+        }
+    }
+    return mayor;
+}
+
+float Promedio(int A[FILAS][COLUMNAS]) {
+    float promedio = 0;
+    for (int i = 0; i < FILAS; i++) {
+        for (int j = 0; j < COLUMNAS; j++) {
+            promedio += A[i][j];
+        }
+    }
+    promedio /= (FILAS * COLUMNAS);
+    return promedio;
+}
+
+int Frecuencia(int A[FILAS][COLUMNAS]) {
+    int frecuencias[10]; // creo mi arrelgo
+    for (int i = 0; i < 10; i++) {
+        frecuencias[i] = 0; // lo inicio en 0
+    }
+    for (int i = 0; i < FILAS; i++) { // recorro la matriz
+        for (int j = 0; j < COLUMNAS; j++) {
+            for (int k = 1; k < 10; k++) { // recorro mis frecuencias
+                if (A[i][j] == k) { // si k es 
+                    frecuencias[k]++;
+                }
+            }
+        }
+    }
+    int mayor = 0;
+    int indice = 0;
+    for (int i = 0; i < 10; i++) {
+        if (mayor < frecuencias[i]) {
+            mayor = frecuencias[i];
+            indice = i;
+        }
+    }
+    return indice;
+}
+
+int buscar_veces(int A[FILAS][COLUMNAS], int v) {
+    int veces = 0; // contador
+    for (int i = 0; i < FILAS; i++) { // recorro por filas
+        for (int j = 0; j < COLUMNAS; j++) {
+            // si encontramos el valor,
+            // veces aumenta en 1 
+            if (A[i][j] == v) veces++;
+        }
+    }
+    return veces;
+}
+int main()
+{
+    srand(time(NULL)); // generar la semilla aleatoria
+    int M[FILAS][COLUMNAS]; // Crear un arreglo2D
+    generar(M); // generar los valores
+    imprimr(M); // mostrar los valores
+    int f = Frecuencia(M);
+    cout << "El numero que mas se repite es ";
+    cout << f << endl;
+    cout << "El promedio es: " << Promedio(M);
+}
