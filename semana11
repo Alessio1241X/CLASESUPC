@@ -186,3 +186,101 @@ int main() {
 	cout << "El numero " << valor << " aparece ";
 	cout << cont << " veces";
 }
+//EL MISMO EJERCICIO PERO FUNCIONES y MAYOR Y MENOR
+#include<iostream>
+#define COLUMNAS 5
+#define FILAS 6
+
+using namespace std;
+
+void generar(int A[FILAS][COLUMNAS]) {
+	for (int i = 0; i < FILAS; i++) {//recorro filas
+		for (int j = 0; j < COLUMNAS; j++) {//columnas
+			A[i][j] = 1 + rand() % 9;//asignar un valor
+		}
+	}
+}
+void imprimir(int A[FILAS][COLUMNAS]) {
+	for (int i = 0; i < FILAS; i++) {//recorro filas
+		for (int j = 0; j < COLUMNAS; j++) {//columnas
+			cout << A[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+void imprimir2(int A[FILAS][COLUMNAS]) {
+	for (int i = 0; i < FILAS; i++) {//recorro filas
+		for (int j = 0; j < COLUMNAS; j++) {//columnas
+			if (A[i][j] == 7) {
+				cout << "# ";
+			}
+			else {
+				cout << "- ";
+			}
+		}
+		cout << endl;
+	}
+}
+int Mayor(int A[FILAS][COLUMNAS]) {
+	int mayor = A[0][0];
+	for (int i = 0; i < FILAS; i++) {//recorro por filas
+		for (int j = 0; j < COLUMNAS; j++) {//recorro por columnas
+			if (A[i][j] >mayor ) {
+				mayor = A[i][j];
+			}
+		}
+	}
+	return mayor;
+}
+int Menor(int A[FILAS][COLUMNAS]) {
+	int menor = A[0][0];
+	for (int i = 0; i < FILAS; i++) {//recorro por filas
+		for (int j = 0; j < COLUMNAS; j++) {//recorro por columnas
+			if (A[i][j] < menor) {
+				menor = A[i][j];
+			}
+		}
+	}
+	return menor;
+}
+
+int Frecuencia(int A[FILAS][COLUMNAS]) {
+	int mass = 0;
+	for (int i = 0; i < FILAS; i++) {//recorro por filas
+		for (int j = 0; j < COLUMNAS; j++) {//recorro por columnas
+			if (A[i][j] > mass && A[i][j] < mass&& mass== A[i][j]) {
+				
+			}
+		}
+		return mass;
+	}
+}
+int buscar_veces(int A[FILAS][COLUMNAS], int valor) {
+	int cont = 0;//contador
+	for (int i = 0; i < FILAS; i++) {//recorro por filas
+		for (int j = 0; j < COLUMNAS; j++) {//recorro por columnas
+			//si encontramos el valor
+			//cont aumenta en 1
+			if (A[i][j] == valor) {
+				cont++;
+			}
+		}
+	}
+	return cont;
+}
+int main() {
+	
+	srand(time(NULL));//generar la semilla aletoria
+	int M[FILAS][COLUMNAS];//crear un arreglo
+	generar(M);
+	imprimir(M);
+	
+	int valor = 7;
+	int cont = buscar_veces(M, valor);
+	cout << "El numero " << valor << " aparece ";
+	cout << cont << " veces" << endl;
+	cout << "El numero mayor es: " << Mayor(M) << endl;
+	cout<<"El numero menor es: "<< Menor(M);
+	
+}
+
