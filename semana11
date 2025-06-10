@@ -1,0 +1,188 @@
+//GENERAR ARREGLO 2D(CUADRADO)
+#include<iostream>
+#define COLUMNAS 5
+#define FILAS 6
+
+using namespace std;
+int main() {
+
+	srand(time(NULL));//generar la semilla aleatoria
+	int M[FILAS][COLUMNAS];//Crea un arreglo2D
+	for (int i = 0; i < FILAS; i++) {//recorro filas
+		for (int j = 0; j < COLUMNAS; j++) {//columnas
+			M[i][j] = 1 + rand() % 9;//asignar un valor
+			cout << M[i][j] << " ";//imprimir el valor
+		}
+		cout << endl;//salto de linea
+	}
+	return 0;
+}
+//EL MISMO EJERCICIO PERO FUNCIONES
+#include<iostream>
+#define COLUMNAS 5
+#define FILAS 6
+
+using namespace std;
+
+void generar(int A[FILAS][COLUMNAS]) {
+	for (int i = 0; i < FILAS; i++) {//recorro filas
+		for (int j = 0; j < COLUMNAS; j++) {//columnas
+			A[i][j] = 1 + rand() % 9;//asignar un valor
+		}
+	}
+}
+void imprimir(int A[FILAS][COLUMNAS]) {
+	for (int i = 0; i < FILAS; i++) {//recorro filas
+		for (int j = 0; j < COLUMNAS; j++) {//columnas
+			cout << A[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+int main() {
+	srand(time(NULL));//generar la semilla aletoria
+	int M[FILAS][COLUMNAS];//crear un arreglo
+	generar(M);
+	imprimir(M);
+}
+//EL MISMO EJERCICIO PERO FUNCIONES
+#include<iostream>
+#define COLUMNAS 5
+#define FILAS 6
+
+using namespace std;
+
+void generar(int A[FILAS][COLUMNAS]) {
+	for (int i = 0; i < FILAS; i++) {//recorro filas
+		for (int j = 0; j < COLUMNAS; j++) {//columnas
+			A[i][j] = 1 + rand() % 9;//asignar un valor
+		}
+	}
+}
+void imprimir(int A[FILAS][COLUMNAS]) {
+	for (int i = 0; i < FILAS; i++) {//recorro filas
+		for (int j = 0; j < COLUMNAS; j++) {//columnas
+			cout << A[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+int buscar_veces(int A[FILAS][COLUMNAS], int valor) {
+	int cont = 0;//contador
+	for (int i = 0; i < FILAS; i++) {//recorro por filas
+		for (int j = 0; j < COLUMNAS; j++) {//recorro por columnas
+			//si encontramos el valor
+			//cont aumenta en 1
+			if (A[i][j] == valor) {
+				cont++;
+			}
+		}
+	}
+	return cont;
+}
+//EL MISMO EJERCICIO PERO FUNCIONES(HALLR UN NUMERO)
+#include<iostream>
+#define COLUMNAS 5
+#define FILAS 6
+
+using namespace std;
+
+void generar(int A[FILAS][COLUMNAS]) {
+	for (int i = 0; i < FILAS; i++) {//recorro filas
+		for (int j = 0; j < COLUMNAS; j++) {//columnas
+			A[i][j] = 1 + rand() % 9;//asignar un valor
+		}
+	}
+}
+void imprimir(int A[FILAS][COLUMNAS]) {
+	for (int i = 0; i < FILAS; i++) {//recorro filas
+		for (int j = 0; j < COLUMNAS; j++) {//columnas
+			cout << A[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+int buscar_veces(int A[FILAS][COLUMNAS], int valor) {
+	int cont = 0;//contador
+	for (int i = 0; i < FILAS; i++) {//recorro por filas
+		for (int j = 0; j < COLUMNAS; j++) {//recorro por columnas
+			//si encontramos el valor
+			//cont aumenta en 1
+			if (A[i][j] == valor) {
+				cont++;
+			}
+		}
+	}
+	return cont;
+}
+int main() {
+	
+	srand(time(NULL));//generar la semilla aletoria
+	int M[FILAS][COLUMNAS];//crear un arreglo
+	generar(M);
+	imprimir(M);
+	int valor = 7;
+	int cont = buscar_veces(M, valor);
+	cout << "El numero " << valor << " aparece ";
+	cout << cont << " veces";
+}
+
+//EL MISMO EJERCICIO PERO FUNCIONES(TACHANDO NUMEROS QUE SALGAN)
+#include<iostream>
+#define COLUMNAS 5
+#define FILAS 6
+
+using namespace std;
+
+void generar(int A[FILAS][COLUMNAS]) {
+	for (int i = 0; i < FILAS; i++) {//recorro filas
+		for (int j = 0; j < COLUMNAS; j++) {//columnas
+			A[i][j] = 1 + rand() % 9;//asignar un valor
+		}
+	}
+}
+void imprimir(int A[FILAS][COLUMNAS]) {
+	for (int i = 0; i < FILAS; i++) {//recorro filas
+		for (int j = 0; j < COLUMNAS; j++) {//columnas
+			cout << A[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+void imprimir2(int A[FILAS][COLUMNAS]) {
+	for (int i = 0; i < FILAS; i++) {//recorro filas
+		for (int j = 0; j < COLUMNAS; j++) {//columnas
+			if (A[i][j] == 7) {
+				cout << "# ";
+			}
+			else {
+				cout << "- ";
+			}
+		}
+		cout << endl;
+	}
+}
+int buscar_veces(int A[FILAS][COLUMNAS], int valor) {
+	int cont = 0;//contador
+	for (int i = 0; i < FILAS; i++) {//recorro por filas
+		for (int j = 0; j < COLUMNAS; j++) {//recorro por columnas
+			//si encontramos el valor
+			//cont aumenta en 1
+			if (A[i][j] == valor) {
+				cont++;
+			}
+		}
+	}
+	return cont;
+}
+int main() {
+	
+	srand(time(NULL));//generar la semilla aletoria
+	int M[FILAS][COLUMNAS];//crear un arreglo
+	generar(M);
+	imprimir2(M);
+	int valor = 7;
+	int cont = buscar_veces(M, valor);
+	cout << "El numero " << valor << " aparece ";
+	cout << cont << " veces";
+}
