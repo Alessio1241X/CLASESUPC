@@ -1,0 +1,248 @@
+/*1.Hacer un programa para rellenar una matriz
+pidiendo al usuario el número de filas y columnas,
+Posteriormente mostrar la matriz en pantalla.*/
+/*#include<iostream>
+using namespace std;
+
+int main() {
+	int numeros[100][100], filas, columnas;
+	cout << "Digite el numero de filas: "; cin >> filas;
+	cout << "Digite el numero de columnas: "; cin >> columnas;
+
+	for (int i = 0; i < filas; i++) {
+		for (int j = 0; j < columnas; j++) {
+			cout << "Digite un numero [" << i << "][" << j << "]"; cin >> numeros[i][j];
+		}
+	}
+	for (int i = 0; i < filas; i++) {
+		for (int j = 0; j < columnas; j++) {
+			cout << numeros[i][j];
+		}
+		cout << "\n";
+	}
+
+	return 0;
+}*/
+/*2.Realiza un programa que defina una matriz de 3x3 y
+escriba un ciclo para que muestre la diagonal principal de la matriz*/
+/*#include<iostream>
+using namespace std;
+
+int main() {
+	int numeros[100][100],FILAS,COLUMNAS;
+	cout << "Digite la cantidad de filas: "; cin >> FILAS;
+	cout << "Digite la cantidad de columnas: "; cin >> COLUMNAS;
+	for (int i = 0; i < FILAS; i++) {
+		for (int j = 0; j < COLUMNAS; j++) {
+			cout << "Digite un numero [" << i << "][" << j << "]= "; cin >> numeros[i][j];
+		}
+	}
+
+	cout << "Mostrando Matriz completa\n";
+
+	for (int i = 0; i < FILAS; i++) {
+		for (int j = 0; j < COLUMNAS; j++) {
+			cout << numeros[i][j];
+		}
+		cout << "\n";
+	}
+
+	cout << "\n\nMostrando diagonal principal de la matriz\n";
+
+	for (int i = 0; i < FILAS; i++) {
+		for (int j = 0; j < COLUMNAS; j++) {
+			if (i == j) {
+				cout << numeros[i][j] << endl;
+			}
+			
+		}
+	}
+	return 0;
+}*/
+/*3Hacer una matriz de tipo entera de 2 * 2, llenarla de números 
+y luego copiar todo su contenido hacia otra matriz.*/
+/*#include<iostream>
+using namespace std;
+int main(){
+	int numeros[2][2] = { {1,2},{3,4} };
+	int matriz[2][2];
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 2; j++) {
+			matriz[i][j] = numeros[i][j];
+		}
+	}
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 2; j++) {
+			cout << matriz[i][j];
+		}
+		cout << "\n";
+	}
+
+	return 0;
+}*/
+/*4.Hacer una matriz preguntando al usuario el numero de filas y columnas,
+llenarla de números aleatorios, copiar el contenido a otra matriz y por último 
+mostrarla en pantalla.*/
+/*#include<iostream>
+#include<time.h>
+#include<random>
+using namespace std;
+int main() {
+	int numeros[100][100], FILAS, COLUMNAS;
+	int numeros2[100][100];
+	cout << "Digite la cantidad de filas: "; cin >> FILAS;
+	cout << "Digite la cantidad de columnas: "; cin >> COLUMNAS;
+
+	srand(time(NULL));
+
+	for (int i = 0; i < FILAS; i++) {
+		for (int j = 0; j < COLUMNAS; j++) {
+			numeros[i][j] = 1 + rand() % 8;//COLOCANDO NUMEROS RANDOM
+			numeros2[i][j] = numeros[i][j];//CAMBIANDO DE GUARDADO
+			cout << numeros[i][j];
+		}
+		cout << "\n";
+	}
+	return 0;
+}*/
+/*5.Realice un programa que lea una matriz de 3x3 y cree su matriz traspuesta.
+La matriz traspuesta es aquella en la que la columna i era la fila i de la matriz original.*/
+/*#include<iostream>
+using namespace std;
+int main() {
+	int numeros[3][3];
+
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			cout << "Digite un numero [" << i << "][" << j << "]: ";cin>> numeros[i][j];
+		}
+	}
+
+	cout << "MATRIZ ORIGINAL\n";
+
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			cout << numeros[i][j];
+		}
+		cout << "\n";
+	}
+
+	cout << "\nMATRIZ TRANSPUESTA\n";
+
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			cout << numeros[j][i];
+		}
+		cout << "\n";
+	}
+	return 0;
+}*/
+/*6.Realice un programa que calcule la suma 
+de dos matrices cuadradas de 3x3.*/
+/*#include<iostream>
+using namespace std;
+int main() {
+	int numeros[3][3] = { {1,2,3},{2,5,6},{4,8,3} };
+	int numeros2[3][3] = { {2,2,3},{4,3,2},{2,1,1} },suma=0;
+	
+	cout << "MATRIZ 1\n";
+
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			cout << numeros[i][j];
+		}
+		cout << "\n";
+	}
+
+	cout << "\nMATRIZ 2\n";
+
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			cout << numeros2[i][j];
+		}
+		cout << "\n";
+	}
+
+	cout << "\nLA SUMA DE AMBAS ES: \n";
+
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			suma = (numeros[i][j] + numeros2[i][j]);
+			cout << suma;
+		}
+		cout << "\n";
+	}
+	
+	return 0;
+}*/
+/*7.Desarrollar un programa que determine si una matriz 
+es simétrica o no. Una matriz es simétrica si es cuadrada y si es igual a 
+su matriz transpuesta.*/
+/*#include<iostream>
+using namespace std;
+int main() {
+	int numeros[100][100],FILAS,COLUMNAS;
+	char band = 'F';
+	cout << "Digite la cantidad de filas: "; cin >> FILAS;
+	cout << "Digite la cantidad de columnas: "; cin >> COLUMNAS;
+
+	for (int i = 0; i < FILAS; i++) {
+		for (int j = 0; j < COLUMNAS; j++) {
+			cout << "Digite un numero [" << i << "][" << j << "] :";cin>> numeros[i][j];
+		}
+	}
+	if (FILAS == COLUMNAS) {
+		for (int i = 0; i < FILAS; i++) {
+			for (int j = 0; j < COLUMNAS; j++) {
+				if (numeros[i][j] = numeros[j][i]) {
+					band = 'V';
+				}
+			}
+		}
+	}
+	if (band == 'V') {
+		cout << "La matriz es simetrica";
+	}
+	else {
+		cout << "La matriz no es simetrica";
+	}
+
+
+	return 0;
+}*/
+/*8.Realice un programa que calcule el producto de 
+dos matrices cuadradas de 3x3.*/
+#include<iostream>
+using namespace std;
+int main() {
+	int numeros[3][3] = { {1,2,3},{2,1,3},{3,1,2} };
+	int numeros2[3][3] = { {3,1,2},{4,7,3},{2,9,2} },producto=0;
+
+	cout << "MATRIZ 1\n";
+
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			cout << numeros[i][j];
+		}
+		cout << "\n";
+	}
+
+	cout << "\nMATRIZ 2\n";
+
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			cout << numeros2[i][j];
+		}
+		cout << "\n";
+	}
+	cout << "\nEL PRODUCTO ES:\n";
+
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			producto = ((numeros[i][j]) * (numeros2[i][j]));
+			cout << producto;
+		}
+		cout << "\n";
+	}
+	return 0;
+}
