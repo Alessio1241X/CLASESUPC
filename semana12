@@ -1,0 +1,407 @@
+#include <iostream>
+#include"string.h"
+using namespace std;
+
+struct Persona {//costoso a nivel de memoria
+	string nombre;
+	string apellido;
+	int edad;
+};
+
+int main() {
+	Persona p;//p e sun objeto de la estructura Persona
+	cout << "Ingrese el nombre: "; cin >> p.nombre;//ingreso de datos
+	cout << "Ingrese el apellido: "; cin >> p.apellido;
+	cout << "Ingrese su edad: "; cin >> p.edad;//salida de datos
+
+	cout << "\nMucho gusto " << p.nombre << " "<< p.apellido;
+	return 0;
+}
+#include <iostream>
+#include"string.h"
+using namespace std;
+
+struct Fecha {//costoso a nivel de memoria
+	int dia, mes, año;
+
+};
+struct anime {
+	string nombre; int cant_capitulos;
+};
+
+struct Persona {
+	string nombre;
+	Fecha fecha_nacimiento;
+	anime anime_favorito;
+
+};
+int main() {
+	//modificar para que los datos se ingresen hacieno
+	Fecha f; anime a;
+	f.dia = 5; f.mes = 02; f.año = 2007;
+	a.nombre = "Dragon Ball Z";
+	a.cant_capitulos = 123;
+	Persona p;
+	p.nombre = "Alessio";
+	p.fecha_nacimiento = f;
+	p.anime_favorito = a;
+
+	cout << "----------------" << endl;
+	cout << "Nombre: \t" << p.nombre;
+	cout << "\nFecha de nacimiento:\t";
+	cout<< p.fecha_nacimiento.dia << "/";
+	cout<< p.fecha_nacimiento.mes<< "/";
+	cout<< p.fecha_nacimiento.año << endl;
+
+	cout << "Anime Favorito: ";
+	cout << p.anime_favorito.nombre;
+	if (p.anime_favorito.cant_capitulos > 100) {
+		cout << "\nTIENE MAS DE 100 CAPITULOS";
+	}
+
+	return 0;
+}
+#include <iostream>
+#include"string.h"
+using namespace std;
+
+struct Fecha {//costoso a nivel de memoria
+	int dia, mes, año;
+
+};
+struct anime {
+	string nombre; int cant_capitulos;
+};
+
+struct Persona {
+	string nombre;
+	Fecha fecha_nacimiento;
+	anime anime_favorito;
+
+};
+int main() {
+	//modificar para que los datos se ingresen hacieno
+	Fecha f; anime a; Persona p;
+	f.dia ; f.mes; f.año ;
+
+
+	cout << "Ingrese su nombre: "; cin >> p.nombre;
+
+	cout << "Ingrese el DD-MM-AAAA: ";
+	cin >> f.dia;
+	cin >> f.mes;
+	cin >> f.año;
+
+	cout << "Ingrese el nombre del anime: ";
+	cin >> a.nombre;
+
+	cout << "Ingrese cantidad de capitulos: ";
+	cin >> a.cant_capitulos;
+	p.anime_favorito = a;
+	p.fecha_nacimiento = f;
+	cout << "----------------" << endl;
+	cout << "Nombre: \t" << p.nombre<<endl;
+	cout << "\nFecha de nacimiento:\t";
+	cout << p.fecha_nacimiento.dia << "/";
+	cout << p.fecha_nacimiento.mes << "/";
+	cout << p.fecha_nacimiento.año << endl;
+
+	cout << "Anime Favorito: ";
+	cout << p.anime_favorito.nombre;
+	if (p.anime_favorito.cant_capitulos > 100) {
+		cout << "\nTIENE MAS DE 100 CAPITULOS";
+	}
+
+	return 0;
+}
+#include <iostream>
+#include"string.h"
+using namespace std;
+
+struct Fecha {//costoso a nivel de memoria
+	int dia, mes, año;
+
+};
+struct anime {
+	string nombre; int cant_capitulos;
+};
+
+struct Persona {
+	string nombre;
+	Fecha fecha_nacimiento;
+	anime anime_favorito;
+
+};
+int main() {
+
+	Fecha f; anime a; 
+	Persona e[3];
+	for (int i = 0; i < 3; i++) {
+		cout << "Ingrese su nombre: "; cin >> e[i].nombre;
+
+		cout << "Ingrese el DD-MM-AAAA: ";
+		cin >> f.dia;cin >> f.mes; cin >> f.año;
+
+		cout << "Ingrese el nombre del anime: ";
+		cin >> a.nombre;
+
+		cout << "Ingrese cantidad de capitulos: ";
+		cin >> a.cant_capitulos;
+		e[i].anime_favorito = a;
+		e[i].fecha_nacimiento = f;
+		cout << "----------------" << endl;
+
+	}
+	for (int i = 0; i < 3; i++) {
+			cout << "Nombre: \t" << e[i].nombre << endl;
+			cout << "\nFecha de nacimiento:\t";
+			cout << e[i].fecha_nacimiento.dia << "/";
+			cout << e[i].fecha_nacimiento.mes << "/";
+			cout << e[i].fecha_nacimiento.año << endl;
+
+			cout << "\nAnime Favorito: ";
+			cout << e[i].anime_favorito.nombre;
+			if (e[i].anime_favorito.cant_capitulos > 100) {
+				cout << "\nTIENE MAS DE 100 CAPITULOS";
+			}
+		
+	}
+	return 0;
+
+#include <iostream>
+#include"string.h"
+using namespace std;
+
+struct Fecha {//costoso a nivel de memoria
+	int dia, mes, año;
+
+};
+struct anime {
+	string nombre; int cant_capitulos;
+};
+
+struct Persona {
+	string nombre;
+	Fecha fecha_nacimiento;
+	anime anime_favorito;
+
+};
+int main() {
+	Fecha f; anime a; 
+	Persona e[3];
+	for (int i = 0; i < 3; i++) {
+		cout << "Ingrese su nombre: "; cin >> e[i].nombre;
+
+		cout << "Ingrese su fecha de nacimiento: \n";
+		cout << "Dia:"; cin >> f.dia;
+		cout << "Mes: "; cin >> f.mes; 
+		cout << "Año: "; cin >> f.año;
+
+		cout << "Ingrese el nombre del anime: ";
+		cin >> a.nombre;
+
+		cout << "Ingrese cantidad de capitulos: ";
+		cin >> a.cant_capitulos;
+		e[i].anime_favorito = a;
+		e[i].fecha_nacimiento = f;
+		cout << "----------------" << endl;
+
+	}
+	//MOSTRAR ESTUDIANTES QUE VEAN EVANGELION
+
+	for (int i = 0; i < 3; i++) {
+		if (e[i].anime_favorito.nombre == "Evangelion") {
+			cout << "Nombre: \t" << e[i].nombre << endl;
+			cout << "\nFecha de nacimiento:\t";
+			cout << e[i].fecha_nacimiento.dia << "/";
+			cout << e[i].fecha_nacimiento.mes << "/";
+			cout << e[i].fecha_nacimiento.año << endl;
+
+			cout << "\nAnime Favorito: ";
+			cout << e[i].anime_favorito.nombre;
+			if (e[i].anime_favorito.cant_capitulos > 100) {
+				cout << "\nTIENE MAS DE 100 CAPITULOS";
+				
+			}
+		}
+	}
+	return 0;
+}
+/*Promedio de gustos de cancuione*/
+#include <iostream>
+#include"string.h"
+using namespace std;
+
+struct Persona {
+	string nombre;
+	int edad;
+	char genero_musical;
+};
+
+
+int main() {
+	
+	Persona e[5];
+	for (int i = 0; i < 5; i++) {
+		cout << "Ingrese su nombre: "; cin >> e[i].nombre;
+
+		cout << "Ingrese su edad: ";
+		cin >> e[i].edad;
+
+		cout << "Ingrese genero musical fav (S,C,R,O): ";
+		cin >> e[i].genero_musical;
+
+		cout << "----------------" << endl;
+		
+	}
+	
+	int c_S = 0, c_C = 0, c_R = 0, c_O = 0;
+	float prom_S = 0, prom_C = 0, prom_R = 0, prom_O = 0;
+	for (int i = 0;i < 5; i++){
+		if (e[i].genero_musical = 'S') {
+			prom_S += e[i].edad; 
+			c_S++;
+		}
+		else if (e[i].genero_musical == 'R') {
+			prom_R += e[i].edad;
+			c_R++;
+		}
+		else if (e[i].genero_musical == 'C') {
+			prom_C += e[i].edad;
+			c_C++;
+		}
+		else if (e[i].genero_musical == 'O') {
+			prom_O += e[i].edad;
+			c_O++;
+		}
+		
+	}
+	if (c_S == 0) c_S = 1;
+	if (c_C == 0) c_C = 1;
+	if (c_R == 0) c_R = 1;
+	if (c_O == 0) c_O = 1;
+
+
+	cout << "Edad promedio -Salsa: " << (prom_S / c_S);
+	cout << "Edad promedio -Cumbia " << (prom_C / c_C);
+	cout << "Edad promedio -Reggaeton: " << (prom_R / c_R);
+	cout << "Edad promedio -Otros: " << (prom_O / c_O);
+	return 0;
+}
+/*Promedio de gustos de cancuione*/
+#include <iostream>
+#include"string.h"
+using namespace std;
+
+struct estudiante {
+	string Nombre;
+	int edad;
+	bool puedevotar() {
+		return edad >= 18;
+	}
+};
+void ImprimirInfoVotacion(estudiante e) {
+	if (e.puedevotar()) {
+		cout << "El estudiante " << e.Nombre << " si puede votar";
+	}
+	else {
+		cout << "El estudiante " << e.Nombre << " no puede votar";
+	}
+}
+
+
+int main() {
+	estudiante e;
+	e.Nombre = "A"; e.edad = 16;
+	ImprimirInfoVotacion(e);
+
+	
+	return 0;
+}
+/*Promedio de gustos de cancuione*/
+#include <iostream>
+#include"string.h"
+using namespace std;
+
+struct estudiante {
+	string Nombre;
+	int edad;
+	bool puedevotar() {
+		return edad >= 18;
+	}
+};
+void ImprimirInfoVotacion(estudiante e) {
+	if (e.puedevotar()) {
+		cout << "El estudiante " << e.Nombre << " si puede votar";
+	}
+	else {
+		cout << "El estudiante " << e.Nombre << " no puede votar";
+	}
+}
+
+
+int main() {
+	estudiante e;
+	cout << "Ingrese su nombre: "; cin >> e.Nombre;
+	cout << "Ingrese su edad: ";cin>> e.edad;
+	ImprimirInfoVotacion(e);
+
+	
+	return 0;
+}
+
+#include <iostream>
+#include"string.h"
+using namespace std;
+
+
+int main() {
+	int x, resultado = 0;
+	cout << "Ingrese el valor de x: "; cin >> x;
+	if (x >= 5) {
+		resultado = x + 2;
+	}
+	else {
+		resultado = 2 * x - 6;
+	}
+	//ES EQUIVALENTE A :
+	resultado = (x >= 5) * (x + 2) + (x < 5) * (2 * x - 6);
+	cout<<"EL resultado es: "<<resultado;
+	return 0;
+}
+
+
+
+
+#include <iostream>
+#include"string.h"
+using namespace std;
+
+struct estudiante {
+	string nombre; int edad;
+};
+bool puedevotar(estudiante e){
+	return e.edad >= 18;
+}
+
+int main() {
+	estudiante e[5];
+	for (int i = 0; i < 5; i++) {
+		cout <<i+1<<"." << "\nIngrese el nombre: "; cin >> e[i].nombre;
+		cout << "Ingrese su edad: "; cin >> e[i].edad;
+	}
+	cout << "\nPERSONAS QUE PUEDEN SUFRAGAR\n" << endl;
+	for (int i = 0; i < 5; i++) {
+		if (puedevotar(e[i])) {
+			cout <<"-"<< e[i].nombre << " puede votar\n";
+		}
+		else {
+			cout <<"-"<< e[i].nombre << " no puede votar\n";
+		}
+
+	}
+
+
+
+	return 0;
+}
