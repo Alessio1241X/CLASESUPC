@@ -207,6 +207,98 @@ int main() {
 		cout << "La matriz no es simetrica";
 	}
 
+/*Crear un arreglo de tamaño 5x5
+
+- hallar la fila que tenga el promedio más alto con funciones
+
+- hallar la moda*/
+
+#include <iostream>
+using namespace std;
+
+#define FILAS 5
+#define COLUMNAS 5
+
+
+void generar(int M[FILAS][COLUMNAS]) {
+    for (int i= 0; i < FILAS; i++) {
+        for (int j = 0; j < COLUMNAS; j++) {
+            M[i][j] = 1 + rand() % 9;
+
+        }
+    }
+}
+
+void imprimir(int M[FILAS][COLUMNAS]) {
+    for (int i = 0; i < FILAS; i++) {
+        for (int j = 0; j < COLUMNAS; j++) {
+            
+            cout << M[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+int Frecuencia(int M[FILAS][COLUMNAS]) {
+    int frecuencias[10]; // creamos un arreglo
+    for (int i = 0; i < 10; i++) {
+        frecuencias[i] = 0; // se inicia en 0
+    }
+    for (int i = 0; i < FILAS; i++) { // recorro la matriz
+        for (int j = 0; j < COLUMNAS; j++) {
+            for (int k = 1; k < 10; k++) { // recorro mis frecuencias
+                if (M[i][j] == k) { 
+                    frecuencias[k]++;
+                }
+            }
+        }
+    }
+    int mayor = 0;
+    int cant = 0;
+    for (int i = 0; i < 10; i++) {
+        if (mayor < frecuencias[i]) {
+            mayor = frecuencias[i];
+            cant = i;
+        }
+    }
+    return cant;
+}
+float Promedio(int M[FILAS][COLUMNAS]) {
+    float promedio_filas = 0;
+    float mayor_prom=0;
+    int fila = 0;
+    for (int i = 0; i < FILAS; i++) {
+        int sum = 0;//se reinicia la suma a 0 en cada nueva fila.
+        for (int j = 0; j < COLUMNAS; j++) {
+            sum+= M[i][j];            
+        }
+
+        promedio_filas = (float)sum / 5;
+
+        if (mayor_prom<promedio_filas) {
+            mayor_prom = promedio_filas;
+            fila = i+1;
+        }
+    }
+    cout << "\nEl mayor promedio es "; cout << mayor_prom << " en la fila "<<fila << endl;
+
+        return fila;
+}
+
+int main() {
+	srand(time(NULL));
+	int M[FILAS][COLUMNAS];
+	
+    generar(M);
+    cout << "\nMATRIZ (5x5)" << endl;
+    imprimir(M);
+  
+    cout << "\nLa moda es: "; cout << Frecuencia(M) << endl;
+    Promedio(M);
+    
+
+
+	return 0;
+}
 
 	return 0;
 }*/
