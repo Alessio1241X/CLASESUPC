@@ -1,0 +1,70 @@
+/*BUSQUEDA SECUENCIAL*/
+//#include<iostream>
+//#include<string.h>
+//
+//using namespace std;
+//int main() {
+//	int a[] = { 3,4,2,1,5 };//arreglo de numeros
+//	int i,dato; bool band = false;//Va a servir para saber si el num existe en el arreglo
+//	i = 0;
+//	cout << "INGRESE UN NUMERO A BUSCAR DEL 1 AL 5: "; cin >> dato;
+//
+//	while ((band == false) && (i<5)){//Si sigue siendo falso se sigue ejecutando
+//		if (a[i] == dato) {
+//			band = true;
+//		}
+//		i++;//contador para el dato
+//	}
+//	if (band == false) {
+//		cout << "El numero a buscar no existe en el arreglo";
+//	}
+//	else if (band == true) {
+//		cout << "El numero a sido encontrado en la pos: " << i - 1 << endl;
+//	}
+//
+//
+//	return 0;
+//}
+
+/*BUSQUEDA BINARIA
+Se necesita que el arreglo este ordenada ascendentemente*/
+#include<iostream>
+#include<string.h>
+
+using namespace std;
+int main() {
+	int numeros[] = { 1,2,3,4,5 };
+	int inf, sup, mitad, dato;
+	bool band = false;
+
+	dato = 4;
+
+	//Algoritmo busqueda Binaria
+	inf = 0;
+	sup = 5;
+
+	while (inf < sup) {
+		mitad = (inf + sup) / 2;
+		if (numeros[mitad] == dato) {
+			band = true;//SE CAMBIA SI SE LOGRA HALLAR EL DATO
+			break;//SALE DEL BUCLE
+		}
+		if (numeros[mitad] > dato) {
+			sup = mitad;
+		}
+		if (numeros[mitad] < dato) {
+			inf = mitad;
+		}
+		if (mitad == sup - 1) {            //Nueva condición
+			break;
+		}
+	}
+
+	if (band == true) {
+		cout << "El numero ha sido encontrado en la pos: " << mitad << endl;
+	}
+	else {
+		cout << "El numero NO ha sido encontrado.";
+	}
+	return 0;
+}
