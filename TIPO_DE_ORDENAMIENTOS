@@ -1,0 +1,80 @@
+/*ORDENAMIENTOS
+METODO BURBUJA*/
+//#include<iostream>
+//
+//using namespace std;
+//int main() {
+//	int numeros[] = { 4,1,2,3,5 };
+//	int aux;
+//
+//	for (int i = 0; i < 5; i++) {
+//		for (int j = 0; j < 5; j++) {
+//			if (numeros[j] > numeros[i]) {
+//				aux = numeros[i];
+//				numeros[i] = numeros[j];
+//				numeros[j] = aux;
+//			}
+//		}
+//	}
+//	for (int i = 0; i < 5; i++) {
+//		cout << numeros[i] << " ";
+//	}
+//
+//	for (int i = 4; i >= 0; i--) {
+//		cout << numeros[i] << " ";
+//	}
+//
+//
+//	return 0;
+//}
+
+/*POR INSERCION*/
+//#include<iostream>
+//#include<string.h>
+//using namespace std;
+//int main() {
+//	int numeros[] = { 5,2,4,1,3 };//arreglo de numeros
+//	int pos, aux;//pos=almacena la posicion, aux=para guardar numeros
+//	for (int i = 0; i < 5; i++) {//recorre todo el arreglo
+//		pos = i;//va a ir de acuerdo con el bucle
+//		aux = numeros[i];//Aux guarda el numero en el que vamos
+//
+//	while ((pos>0)&&(numeros[pos-1]>aux)){//pos>0(Compara hasta que sea mayor a cero),si el numero izq es mayor al actual
+//		numeros[pos] = numeros[pos - 1];//hace intercambio de numeros del arreglo
+//		pos--;//recorre el arreglo
+//	}
+//	numeros[pos] = aux;//refresca en que numero se encuentra del bucle
+//
+//	}
+//	for (int i = 0; i < 5; i++) {
+//		cout << numeros[i];
+//	}
+//
+//	return 0;
+//}
+
+/*POR SELECCION*/
+#include<iostream>
+#include<string.h>
+using namespace std;
+int main() {
+	int numeros[] = { 5,4,2,1,3 };
+	int aux, min;
+	for (int i = 0; i < 5; i++) {
+		min = i;//suponemos que la primera posicion es el min
+		for (int j = i + 1; j < 5; j++) {//es i+1 para empezar a recorrer desde el seg num
+			if (numeros[j] < numeros[min]) {//busca la posicion minima
+				min = j;
+			}
+		}
+		aux = numeros[i];//intercambia
+		numeros[i] = numeros[min];
+		numeros[min] = aux;
+	}
+	for (int i = 0; i < 5; i++) {
+		cout << numeros[i];
+	}
+
+
+	return 0;
+}
