@@ -1,0 +1,371 @@
+/*Cadenas:
+SE tienen que usar las 2 librerias, su forma de guardar tiene diversas opciones(con el cin>> , tradicional
+,se guardan los caracteres pero si hay un espacio se termina, (con el gets(), se puede guardar pero
+almacena caracteres de mas, (con el cin.getline()) es la forma mas optima de guardar, ya que respeta el 
+espacio destinado a cada caracter
+
+*/
+//
+//#include<iostream>
+//#include<string.h>
+//
+//using namespace std;
+//
+//int main() {
+//
+//	char palabra[] = "Alessio";
+//	char palabra2[] = { 'A','L','E','S','S','I','O' };
+//	char nombre[30];
+//
+//	cout << "Ingrese su nombre: "; cin.getline(nombre,20,'\n');
+//	cout <<"Su nombre es: "<< nombre;
+//
+//
+//	return 0;
+//}
+
+//Longitud de una cadena de caracteres -Funcion strlen()esta funcion cuenta la cantidad de caracteres de mi cadena
+
+//#include<iostream>
+//#include<string.h>
+//using namespace std;
+//
+//int main() {
+//	char palabra[] = "hola soy alessio";
+//	int longitud = 0;
+//
+//	longitud = strlen(palabra);
+//	
+//	cout << "EL numero de caracteres es: " << longitud << endl;
+//
+//
+//
+//	return 0;
+//}
+/*1.Hacer un programa que pida al usuario que digite una 
+cadena de caracteres, luego verificar la longitud de la cadena
+y si esta supera a 10 caracteres mostrarla en pantalla, 
+caso contrario no mostrarla*/
+
+//#include<iostream>
+//#include<string.h>
+//using namespace std;
+//
+//int main() {
+//	int longitud = 0;
+//	char palabras[50];
+//	cout << "Ingrese su palabra: "; cin.getline(palabras, 20, '\n');
+//	longitud = strlen(palabras);
+//	if (longitud > 10) {
+//		cout << "Si cumple la palabra " << palabras << " con la condicion" << endl;
+//	}
+//	else {
+//		cout << endl;
+//	}
+//
+//
+//	return 0;
+//}
+//Copiar el contenido de una cadena a otra -Funcion strcpy_s() esta funcion ayuda a copiar el contenido
+//de un arreglo a otro
+
+//#include<iostream>
+//#include<string.h>
+//using namespace std;
+//
+//int main() {
+//	char nombre[] = "Alejandro";
+//	char nombre2[20];
+//
+//	strcpy_s(nombre2, nombre);
+//
+//	cout << nombre2<<endl;
+//
+//
+//	return 0;
+//}
+/*2.Pedir al usuario una cadena de caracteres,almacenarla
+en un arreglo y copiar todo su contenido hacia otro arreglo
+de caracteres*/
+//#include<iostream>
+//#include<string.h>
+//using namespace std;
+//int main() {
+//	char contenido[50];
+//	char contenido2[50];
+//
+//	cout << "Ingrese una palabra: "; cin.getline(contenido, 50);
+//
+//	strcpy_s(contenido2, contenido);
+//	cout << contenido2 << endl;
+//	return 0;
+//}
+
+//Comparar cadenas -Funcion strcmp(), se suele usar con
+//condicionales,(cuando se iguala a 0, es porque son iguales)
+//(cuando es ==1 o!=0 son diferentes),ademas compara cuando es 
+// mayor alfabeticamente(>0)
+
+//#include<iostream>
+//#include<string.h>
+//using namespace std;
+//int main() {
+//	char palabra1[] = "Hola";
+//	char palabra2[] = "Hola";
+//	
+//	if (strcmp(palabra1, palabra2) == 0) {
+//		cout << "Ambas cadenas son iguales";
+//	}
+//	return 0;
+//}
+/*3.Pedir al usuario que digite 2 cadenas de caracteres, e 
+indicar si ambas cadenas son iguales, en caso de no serlo,
+indicar cual es mayor alfabeticamente*/
+//#include<iostream>
+//#include<string.h>
+//using namespace std;
+//int main() {
+//	char contenido[100];
+//	char contenido2[100];
+//	cout << "Ingrese una palabra o frase: "; cin.getline(contenido, 100);
+//	cout << "Ingrese otra palabra o frase: "; cin.getline(contenido2, 100);
+//
+//	if (strcmp(contenido,contenido2)==0) {
+//		cout << "Ambas cadenas son iguales";
+//	}else 
+//	if (strcmp(contenido, contenido2) > 0) {
+//		cout << "La mayor alfabeticamente es: " << contenido;
+//	}else {
+//		cout << "La mayor alfabeticamente es: " << contenido2;
+//	}
+//
+//
+//
+//
+//	return 0;
+//}
+
+//Añadir o concatenar una cadena con otra- funcion strcat_s()
+
+//#include<iostream>
+//#include<string.h>
+//using namespace std;
+//int main() {
+//	char cad1[] = "Esto es una cadena";
+//	char cad2[] = " de ejemplo";
+//	char cad3[30];
+//
+//	strcpy_s(cad3, cad1);//cad3="Esto es una cadena"
+//	
+//	strcat_s(cad3, cad2); //cad3="Esto es una cadena de ejemplo"
+//		
+//	cout << cad3 << endl;
+//	return 0;
+//}
+
+/*4.Crear una cadena que tenga la siguente frase "Hola que tal",luego crear otra
+cadena para preguntarle al usuario su nombre, por ultimo anadir el nombre al final
+de la primera cadena y mostrar el mensaje completo "Hola que tal"(NombreDelUsuario)*/
+//#include<iostream>
+//#include<string.h>
+//using namespace std;
+//int main() {
+//	char palabra[] = "Hola que tal ";
+//	char palabra2[50];
+//	char palabra3[100];
+//
+//	cout << "Ingrese su nombre: "; cin.getline(palabra2, 50);
+//	strcpy_s(palabra3, palabra);//copia contenido
+//	strcat_s(palabra3, palabra2);//anade contenido
+//
+//	cout << palabra3;
+//
+//	return 0;
+//}
+
+//Invertir una cadena -Funcion _strrev()
+
+//#include<iostream>
+//#include<string.h>
+//using namespace std;
+//
+//int main() {
+//	char cad[] = "Alessio";
+//	_strrev(cad);
+//	cout << cad << endl;
+//
+//	return 0;
+//}
+/*5.Hacer un programa que determine si una palabra
+es capicua*/
+//#include<iostream>
+//#include<string.h>
+//using namespace std;
+//int main() {
+//	char cad[30];
+//	char cad2[30];
+//
+//	cout << "Ingrese un nombre: "; cin.getline(cad, 30);
+//	strcpy_s(cad2, cad);
+//	_strrev(cad2);
+//	
+//	if (strcmp(cad2, cad) == 0) {
+//		cout<<"Es capicua";
+//	}
+//	else {
+//		cout << "No es capicua";
+//	}
+//
+//	return 0;
+//}
+
+//Pasar una palabra a MAYUSCULA- Funcion _strupr_s()
+//#include<iostream>
+//#include<string.h>
+//using namespace std;
+//int main() {
+//	char palabra[] = "alessio";
+//
+//	_strupr_s(palabra);
+//	cout << palabra << endl;
+//	return 0;
+//}
+
+/*6.Convertir dos cadena de minusculas a MAYUSCULAS. Compararlas,
+y decir si son iguales o no*/
+//#include<iostream>
+//#include<string.h>
+//using namespace std;
+//int main() {
+//	char cad[30];
+//	char cad2[30];
+//
+//	cout << "Ingrese una palabra: "; cin.getline(cad, 30);
+//	cout << "Ingrese otra palabra: "; cin.getline(cad2, 30);
+//
+//	_strupr_s(cad); _strupr_s(cad2);
+//	if (strcmp(cad2, cad) == 0) {
+//		cout << "\nAmbas palabras son iguales";
+//	}
+//	else {
+//		cout << "\nNo son iguales";
+//	}
+//
+//	return 0;
+//}
+
+//Pasar una palabra a minuscula- Funcion _strlwr_s()
+//#include<iostream>
+//#include<string.h>
+//using namespace std;
+//int main() {
+//	char palabra[] = "PROGRAMACION ATS";
+//	_strlwr_s(palabra);
+//	cout << palabra << endl;
+//
+//
+//	return 0;
+//}
+//
+
+/*7.Pedir su nombre al usuario en mayuscula,
+si su nombre comienza por la letra A,
+convertir su nombre a minusculas, caso contrario
+no convertirlo*/
+//#include<iostream>
+//#include<string.h>
+//using namespace std;
+//int main() {
+//	char cad[]="AZZZZZZZZZZ";
+//	char cad2[30];
+//	cout << "INGRESE SU NOMBRE (EN MAYUSCULA): "; cin.getline(cad2, 30);
+//	
+//	if (cad2[0]=='A') { //O con esta forma strcmp(cad2, cad) <= 0
+//		_strlwr_s(cad2);
+//		cout << cad2 << endl;
+//	}
+//	else {
+//		cout << cad2 << endl;
+//	}
+//
+//
+//
+//
+//	return 0;
+//}
+
+/*Transformar una cadena a numeros - Funcion atai() y ataf()
+atoi() -> transforma cadena a numeros enteros
+atof()_>transforma cadena a numeros flotante
+*/
+//#include<iostream>
+//#include<string.h>
+//#include<stdlib.h>//ESTAS FUNCIONES FUNCIONAN CON ESTA LIBRERIA
+//
+//using namespace std;
+//int main() {
+//	char cad[] = "123.546";
+//	float numero;
+//	numero = atof(cad);
+//	cout << cad << endl;
+//
+//
+//	return 0;
+//}
+
+/*8.Pedir al usuario 2 cadenas de caracteres de numeros, uno entero 
+y el otro real,convertirlos a sus respectivos valores y por 
+ultimo sumarlos*/
+	
+//#include<iostream>
+//#include<string.h>
+//#include<stdlib.h>
+//
+//using namespace std;
+//int main() {
+//	char cad[100];
+//	char cad2[100];
+//	int numero1; float numero2; double sum = 0;
+//
+//	cout << "Ingrese un valor entero : "; cin.getline(cad, 100);//solo guarda caracteres de cadenas
+//	cout << "Ingrese un valor decimal : "; cin.getline(cad2, 100);//solo guarda caracteres de cadenas
+//
+//	numero1=atoi(cad); numero2=atof(cad2);
+//	sum = numero1 + numero2; cout << "\nLa suma es: " << sum << endl;
+//	return 0;
+//}
+
+/*9.Realice un programa que lea una cadena de caracteres de la entrada estándar y muestre en
+la salida estándar cuántas ocurrencias de cada vocal existen en la cadena.*/
+#include<iostream>
+#include<stdlib.h>
+#include<string.h>
+using namespace std;
+
+int main() {
+	char cad[100];
+	int vocal_a = 0, vocal_e = 0, vocal_i = 0, vocal_o = 0, vocal_u = 0;
+	cout << "Ingrese una palabra o frase: "; cin.getline(cad, 100,'\n');
+
+	for (int i = 0; i < 100; i++) {
+		switch (cad[i]){
+		case'A':
+		case'a':vocal_a++; break;
+		case'E':
+		case'e':vocal_e++; break;
+		case'I':
+		case'i':vocal_i++; break;
+		case'O':
+		case'o':vocal_o++; break;
+		case'U':
+		case'u':vocal_u++; break;
+		}
+	}
+	cout << "Vocal a: " << vocal_a << endl;
+	cout << "Vocal e: " << vocal_e << endl;
+	cout << "Vocal i: " << vocal_i << endl;
+	cout << "Vocal o: " << vocal_o << endl;
+	cout << "Vocal u: " << vocal_u << endl;
+
+	return 0;
+}
