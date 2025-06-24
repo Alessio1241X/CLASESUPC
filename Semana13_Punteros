@@ -1,0 +1,201 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+int main(){
+	string* puntero_universidad;//creado el puntero
+	string universidad = "UPC";//crear una variable
+	puntero_universidad = &universidad;
+	//puntero que apunta a universidad
+
+	cout << "El valor del puntero es: " << *puntero_universidad;
+	cout << "\nLa direccion es: " << puntero_universidad;
+
+	return 0;
+}
+
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+int main(){
+	int* numero = new int;
+	//crear un numero con memoria dinamica
+	*numero = 24;
+	//asignar un valor a ese numero
+	cout << "El valor de numero es: " << *numero;
+	//acceder al numero con *
+	cout << "\nLa direccion del numero es: " << numero;
+	//sin * mostrar la direccion de memoria
+	delete numero;//<----Eliminarlo de la RAM
+	
+	return 0;
+}
+
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+int main(){
+	int* numero = new int;
+	*numero = 24;
+	*numero = *numero + 20;
+	//incluso puedo hacer operaciones siempre y cuando 
+	//utilice * antes de la variable
+	cout << "El valor de numero es: " << *numero;
+	
+	delete numero;//<----Eliminarlo de la RAM
+	
+	return 0;
+}
+
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+int main(){
+	int edades[5] = {18,17,20,21,20};//arreglo de 5 enteros
+
+	int* d_edades = new int[5];
+	//arreglo dinamico de 5 enteros que se puede eliminar
+	delete d_edades;
+
+	return 0;
+}
+
+//PROMEDIO CON PUNTEROS
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+float promedio(int* edades, int cant) {
+	float p = 0;
+	for (int i = 0; i < cant; i++)	{
+		p += edades[i];	
+	}
+	return p / cant;
+}
+
+int main() {
+	//solicitar 5 edades,hallar el promedio 
+	int* edades = new int[5];
+	float p = 0;
+	for (int i = 0; i < 5; i++) {
+		cout << "Ingrese la edad " << i + 1 << " : ";
+		cin >> edades[i];
+	}
+	cout << "\nEl promedio de las 5 edades es: " << promedio(edades, 5);
+
+	delete[] edades;
+	//eliminar la variable
+	return 0;
+}
+
+
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+void modificar_soles(int v) {
+	//se hace una copia de valor
+	v=50;
+	//lo que cambia es lo copia
+}
+void modificar_soles2(int *v) {
+	//recibe la direccion de memoria
+	*v = 50;
+	//modificar el valor original  
+}
+
+int main() {
+	//otra aplicacion
+	int soles = 25;
+	int* puntero_soles = &soles;
+	//modificar_soles(soles);
+	cout << soles;
+	modificar_soles2(puntero_soles);
+	cout << "\n" << soles;
+	return 0;
+}
+
+
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+int main() {
+	string* nombre = new string;
+	string* apellido = new string;
+	int *edad= new int;
+	string* codigo = new string;
+	
+	cout << "Ingrese su nombre: "; cin >> *nombre;
+	cout << "Ingrese su apellido: ";cin>> *apellido;
+	cout << "Ingrese su edad: ";cin>> *edad;
+	cout << "Ingrese su codigo de alumno: ";cin>> *codigo;
+
+	cout << "\nSu espacio de memoria del nombre es: " << nombre;
+	cout << "\nSu espacio de memoria del apellido es: " << apellido;
+	cout << "\nSu espacio de memoria de la edad nombre es: " << edad;
+	cout << "\nSu espacio de memoria del codigo de alumno es: " << codigo;
+
+
+	return 0;
+}
+
+//CALCULADORA CON PUNTEROS
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+int main() {
+	int*num1 = new int;
+	int*num2 = new int;;
+	int opcion = 0;
+
+	cout << "\tMENU";
+	cout << "\n*************************";
+	cout << "\n1.Suma";
+	cout << "\n2.Resta";
+	cout << "\n3.Producto";
+	cout << "\n4.Division";
+	cout << "\n5.Modulo";
+	cout << "\n6.EXIT"<<endl;
+	cout << "\n*************************";
+	cout << "\nIngrese una opcion: "; cin >> opcion;
+	
+	if (opcion == 1) {
+		cout << "\nIngrese un numero: "; cin >> *num1;
+		cout << "Ingrese un segundo numero: "; cin >> *num2;
+		*num1 += *num2;
+		cout << "\nLa suma es: " << *num1;
+	}
+	if (opcion == 2) {
+		cout << "\nIngrese un numero: "; cin >> *num1;
+		cout << "Ingrese un segundo numero: "; cin >> *num2;
+		*num1 -= *num2;
+		cout << "\nLa resta es: " << *num1;
+	}
+	if (opcion == 3) {
+		cout << "\nIngrese un numero: "; cin >> *num1;
+		cout << "Ingrese un segundo numero: "; cin >> *num2;
+		*num1 *= *num2;
+		cout << "\nEl producto es: " << *num1;
+	}
+	if (opcion == 4) {
+		cout << "\nIngrese un numero: "; cin >> *num1;
+		cout << "Ingrese un segundo numero: "; cin >> *num2;
+		*num1 /= *num2;
+		cout << "\nLa division es: " << *num1;
+	}
+	if (opcion == 5) {
+		cout << "\nIngrese un numero: "; cin >> *num1;
+		cout << "Ingrese un segundo numero: "; cin >> *num2;
+		*num1 =*num1% *num2;
+		cout << "\nEl modulo es: " << *num1;
+	}
+	if (opcion == 6) {
+		cout << "\nGRACIAS, !HASTA PRONTO !";
+	}
+	return 0;
+}
