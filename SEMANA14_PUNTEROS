@@ -164,3 +164,83 @@ int main()
 	cout << "El promedio es: " << *promedio;
 	cout << "\nLa mayor edad es: " << *mayor;
 }
+//VER EL CODIGO
+#include <iostream>
+using namespace std;
+struct Partidos {
+	string Equipolocal;
+	string Equipovisita;
+	int goleslocal;
+	int golesvisita;
+};
+void Mayorgoles(Partidos* e, int N, string* mayorgol) {
+	int goles_A = 0, goles_B = 0, goles_C = 0;
+	for (int i = 0; i < N; i++) {
+	if (e[i].Equipolocal == "A") {
+			goles_A += e[i].goleslocal;
+	}
+	if (e[i].Equipovisita == "A") {
+			goles_A += e[i].golesvisita;
+		}
+	if (e[i].Equipolocal == "B") {
+			goles_B += e[i].goleslocal;
+	}
+	if (e[i].Equipovisita == "B") {
+		goles_B += e[i].golesvisita;
+	}
+	if (e[i].Equipolocal == "C") {
+			goles_C += e[i].goleslocal;
+	}
+	if (e[i].Equipovisita == "C") {
+		goles_C += e[i].golesvisita;
+	}
+	if (goles_A > goles_B && goles_A > goles_C) {
+		*mayorgol = "A";
+	}else if (goles_B > goles_C && goles_B > goles_A) {
+		*mayorgol = "B";
+	}else {
+		*mayorgol = "C";
+	}
+
+	}
+	
+}
+void Partidosempatados(Partidos* e, int N) {
+	int empato_a = 0;
+	int empato_b = 0;
+	int empato_c = 0;
+	for (int i = 0; i < N; i++) {
+
+		if (e[i].Equipolocal == "A" and (e[i].goleslocal == e[i].golesvisita)) {
+			empato_a++;
+
+		}
+		if (e[i].Equipolocal == "B" and (e[i].goleslocal == e[i].golesvisita)) {
+			empato_b++;
+		}
+		if (e[i].Equipolocal == "C" and (e[i].goleslocal == e[i].golesvisita)) {
+			empato_c++;
+		}
+	}
+}
+
+int main(){
+	int N;
+	cout << "Ingrese la cantidad de partidos jugados: "; cin >> N;
+	Partidos* partidos = new Partidos[N];
+	for (int i = 0; i < N; i++) {
+		cout << i + 1 << ".PARTIDO" << endl;
+		cout<<"Ingrese el nombre del equipo LOCAL: "; cin >> partidos[i].Equipolocal;
+		cout << "Ingrese la cantidad de goles: "; cin >> partidos[i].goleslocal;
+		cout<<"Ingrese el nombre del equipo VISITANTE: "; cin >> partidos[i].Equipovisita;
+		cout << "Ingrese la cantidad de goles: "; cin >> partidos[i].golesvisita;
+	}
+	string* mayorgol = new string ;
+	Mayorgoles(partidos, N, mayorgol);
+	Partidosempatados(partidos, N);
+
+	cout << "\nEl equipo con mayor cantidad de goles es: " << *mayorgol;
+	cout << "\nEl equipo que mas empato es: " << *mayorgol;
+	
+	return 0;
+}
