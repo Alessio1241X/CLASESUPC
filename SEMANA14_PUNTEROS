@@ -53,3 +53,114 @@ int main() {
 	return 0;
 }
      
+//EJERCICIO CON FUNCIONES Y PUNTEROS(codigo mio)
+#include<iostream>
+using namespace std;
+
+struct Estudiante {
+	string nombre;
+	int edad;
+};
+void EdadMayor(Estudiante* e, int N, int* mayoredad) {
+	int mayor = e[0].edad;
+	for (int i = 0; i < N; i++) {
+		if (e[i].edad > mayor) {
+			mayor = e[i].edad;
+		}
+	}
+	*mayoredad = mayor;
+}
+void EdadMenor(Estudiante* e, int N, int* menoredad) {
+	int menor = e[0].edad;
+	for (int i = 0; i < N; i++) {
+		if (e[i].edad < menor) {
+			menor = e[i].edad;
+		}
+	}
+	*menoredad = menor;
+}
+void HallarPromedio(Estudiante* e, int N, float* promedio) {
+	float prom = 0;
+	for (int i = 0; i < N; i++) {
+		prom += e[i].edad;
+	}
+	prom /= N;
+	*promedio = prom;
+}
+int main() {
+	int N;
+	cout << "Ingrese el numero de estudiantes: "; cin >> N;
+	Estudiante* estudiantes = new Estudiante [N];
+
+	for (int i = 0; i < N; i++) {
+		cout << "Ingrese su nombre: "; cin >>estudiantes[i].nombre;
+		cout << "Ingrese su edad: "; cin >>estudiantes[i].edad ;
+	}
+	float* promedio = new float;
+
+	int* mayoredad = new int;
+
+	int* menoredad = new int;
+
+	HallarPromedio(estudiantes, N, promedio);
+
+	EdadMayor(estudiantes, N, mayoredad);
+
+	EdadMenor(estudiantes, N, menoredad);
+	cout << "\nEl promedio es: "<<*promedio;
+	cout << "\nLa edad mayor es: "<<*mayoredad;
+	cout << "\nLa edad menor es: "<<*menoredad;
+
+	return 0;
+}
+
+//MISMO EJERCICIO (estilo del profe)
+#include <iostream>
+using namespace std;
+struct Estudiante {
+	string nombre;
+	int edad;
+};
+float PomedioEstudiantes(Estudiante* e, int N) {
+	float prom = 0;
+	for (int i = 0; i < N; i++) {
+		prom += e[i].edad;
+	}
+	prom /= N;
+	return prom;
+}
+void CalculosPromMayor(Estudiante* e, int N, float *p, int *m) {
+	// e-> el arreglo de estudiantes en mem. dinámica
+	// N-> un entero, p y m -> mem. dinámica (punteros)
+	float prom = 0; // prom cálculos de promedio
+	int mayor = e[0].edad; // asumo que es el mayor
+	for (int i = 0; i < N; i++) { // recorrer el arreglo de estudiantes
+		if (mayor < e[i].edad) { // si mayor es menor que otra edad
+			mayor = e[i].edad; // actualizo el valor de mayor
+		}
+		prom += e[i].edad; // prom acumula la edad
+	}
+	prom /= N; // terminar el cálculo de promedio
+	*p = prom; // asignacion de variable prom a p
+	*m = mayor; // modificar el valor de m con el valor de mayor
+}
+int main()
+{
+	int N;
+	cout << "Ingrese el numero de estudiantes: ";
+	cin >> N;
+	Estudiante* estudiantes = new Estudiante[N];
+	for (int i = 0; i < N; i++) {
+		cout << "Ingrese el nombre: "; cin >> estudiantes[i].nombre;
+		cout << "Ingrese la edad: "; cin >> estudiantes[i].edad;
+	}
+	int* mayor = new int; // ambas sin asignar un valor
+	float* promedio = new float;
+	// funcion que halle la edad mayor
+	// funcion que halle la edad promedio
+	CalculosPromMayor(estudiantes, N, promedio, mayor);
+	// RETO: juntarlo todo en una sola funcion
+	// HINT: utilizar memoria dinámica
+	cout << "El promedio es: " << *promedio;
+	cout << "\nLa mayor edad es: " << *mayor;
+}
