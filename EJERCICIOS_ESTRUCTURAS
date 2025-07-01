@@ -1,0 +1,196 @@
+//ESTRUCTURA
+//#include <iostream>
+//using namespace std;
+//
+//struct Persona {
+//	string nombre;
+//	int edad;
+//};
+//int main() {
+//	Persona p[3];
+//	for (int i = 0; i < 3; i++) {
+//		cout <<i+1<< ".Ingrese su nombre: "; cin >> p[i].nombre;
+//		cout << "Ingrese su edad: \n"; cin >> p[i].edad;
+//	}
+//
+//}
+//ESTRUCTURA ANIDADA
+//#include<iostream>
+//
+//using namespace std;
+//
+//struct info_direccion {
+//	string direccion, ciudad, provincia;
+//};
+//struct empleado {
+//	string nombre;
+//	struct info_direccion dir_empleado;
+//	double salario;
+//};
+//
+//int main() {
+//	empleado e[2];
+//	for (int i = 0; i < 2; i++) {
+//		fflush(stdin);//VACIAR EL BUFFER  Y PERMITIR DIGITAR LOS VALORES
+//
+//		cout <<i+1<< ".\nDigite su nombre: "; e[i].nombre;
+//		cout << "Digite su direccion: "; cin >> e[i].dir_empleado.direccion;
+//		cout << "Ciudad: "; cin >> e[i].dir_empleado.ciudad;
+//		cout << "Provincia: "; cin >> e[i].dir_empleado.provincia;
+//		cout << "Ingrese su salario: "; cin >> e[i].salario;
+//
+//	}
+//
+//	return 0;
+//}
+/*
+Ejercicio 1: Hacer una estructura llamada corredor, en la cual se tendrán los siguientes campos: 
+Nombre, edad, sexo, club, pedir datos al usuario para un corredor, y asignarle una categoría de competición:
+Juvenil menor o = 18 años
+Señor menor o = 40 años
+Veterano mayor a 40 años
+Posteriormente imprimir todos los datos del corredor, incluida su categoría de competición*/
+//#include<iostream>
+//using namespace std;
+//
+//struct corredor {
+//	string nombre;
+//	int edad;
+//	string sexo;
+//	string club;
+//
+//};
+//
+//int main() {
+//	corredor c[2];
+//	string cate;
+//	for (int i = 0; i < 2; i++) {
+//		cout << "Ingrese su nombre: "; cin >> c[i].nombre;
+//		cout << "Ingrese su edad: "; cin >> c[i].edad;
+//		cout << "Ingrese su sexo: "; cin >> c[i].sexo;
+//		cout << "Ingrese su club: "; cin >> c[i].club;
+//
+//		if (c[i].edad <= 18) {
+//			cate = "Juvenil";
+//		}
+//		else if (c[i].edad <= 40) {
+//			cate = "Senor";
+//		}
+//		else if (c[i].edad > 40) {
+//			cate = "Veterano mayor";
+//		}
+//	}
+//
+//	for (int i = 0; i < 2; i++) {
+//		cout << "------------------------" << endl;
+//		cout <<i+1<< ".\nNombre: " << c[i].nombre << endl;
+//		cout << "Edad: " << c[i].edad << endl;
+//		cout << "Sexo: " << c[i].sexo << endl;
+//		cout << "Club: " << c[i].club << endl;
+//		cout << "Categoria: " << cate<<endl;
+//	}
+//
+//	return 0;
+//}
+/*Ejercicio 2: Hacer una estructura llamada alumno, en la cual se tendrán los siguientes Campos: 
+Nombre, edad, promedio, pedir datos al usuario para 3 alumnos, 
+comprobar cuál de los 3 tiene el mejor promedio y posteriormente imprimir los datos del alumno*/
+//#include<iostream>
+//using namespace std;
+//
+//struct alumno {
+//	string nombre;
+//	int edad;
+//	float promedio;
+//};
+//int main() {
+//	alumno a[3];
+//	float plus=0;
+//	int may = 0;
+//	for (int i= 0; i < 3; i++) {
+//		cout << "Ingrese su nombre: "; cin >> a[i].nombre;
+//		cout << "Ingrese su edad: "; cin >> a[i].edad;
+//		cout << "Ingrese su promedio: "; cin >> a[i].promedio;
+//		if (a[i].promedio > plus) {
+//			plus = a[i].promedio;
+//			may = i;
+//		}
+//	}
+//	cout << "El que tiene mayor promedio es: " << endl;
+//		cout << "\nNombre: " << a[may].nombre<<endl;
+//		cout << "Edad: " << a[may].edad<<endl;
+//		cout << "Promedio: " << plus;
+//
+//	return 0;
+//}
+//}
+/*3.Ejercicio 3: Realizar un programa que lea un arreglo de estructuras los datos de N 
+empleados de la empresa y que imprima los datos del empleado con mayor y menor salario.*/
+//#include<iostream>
+//using namespace std;
+//
+//struct Empleado {
+//	string nombre;
+//	float salario;
+//};
+//
+//int main(){
+//	Empleado e[100]; int n_empleados,pos_mayor=0,pos_menor=0;
+//	float mayor = 0, menor = 9999999;
+//	cout << "Ingrese la cantidad de empleados: "; cin >> n_empleados;
+//
+//	for (int i = 0; i < n_empleados; i++) {
+//		cout << i+1<<". Ingrese su nombre: "; cin >> e[i].nombre;
+//		cout <<i+1<< ". Ingrese su salario: "; cin >> e[i].salario;
+//
+//		//EMPLEADO DE MAYOR SALARIO
+//		if (e[i].salario > mayor) {
+//			mayor = e[i].salario;
+//			pos_mayor = i;
+//			//EMPLEADO DE MENOR SALARIO
+//		}else if(e[i].salario<menor){
+//			menor = e[i].salario;
+//			pos_menor = i;
+//		}
+//	}
+//	cout << "EMPLEADO CON MAYOR SALARIO:"<<endl;
+//	cout << "Nombre:" << e[pos_mayor].nombre<<endl;
+//	cout << "Salario: " << mayor << endl;
+//
+//	cout << "EMPLEADO CON MENOR SALARIO: " << endl;
+//	cout << "Nombre: " << e[pos_menor].nombre << endl;
+//	cout << "Salario: " << menor << endl;
+//
+//	return 0;
+//}
+/*Ejercicio 4: Hacer un arreglo de estructura llamada atleta para N atletas que 
+contenga los siguientes campos: nombre, país, numero_medallas. y devuelva los 
+datos (Nombre, país) del atleta que ha ganado el mayor número de medallas.*/
+#include<iostream>
+using namespace std;
+struct atleta {
+	string nombre, pais;
+	int num_medallas;
+};
+
+int main() {
+	atleta a[100];
+	int n_med,may=0,mayor=0;
+	cout << "Ingrese la cantidad de atletas participantes: "; cin >> n_med;
+	for (int i = 0; i < n_med; i++) {
+		cout << i + 1 << ".Ingrese su nombre: "; cin >> a[i].nombre;
+		cout << "Ingrese su pais: "; cin >> a[i].pais;
+		cout << "Ingrese su numero de medallas ganadas: "; cin >> a[i].num_medallas;
+		if (a[i].num_medallas > mayor) {
+			mayor = a[i].num_medallas;
+			may = i;
+		}
+	}
+	cout << "---------------" << endl;
+	cout << "ATLETA CON MAYOR NUMERO DE MEDALLAS" << endl;
+	cout << "Nombre: " << a[may].nombre<<endl;
+	cout << "Pais: " << a[may].pais<<endl;
+	cout << "Cantidad de medallas: " << mayor << endl;
+
+	return 0;
+}
