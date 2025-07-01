@@ -1,0 +1,55 @@
+#include<iostream>
+using namespace std;
+int main() {
+
+	int* numero = new int;
+	//creando la variable
+	//en memoria dinamico
+	//crear un puntero a un entero y llamarlo numero
+
+	*numero = 5;
+	cout << "El valor del numero es: " << *numero;
+	//mostramos el valor
+	cout << "\nSu direccion es: " << numero;
+	//la direccion de memoria a la que apunta  
+	delete[]numero;
+	//eliminar la asignacion de valor
+  //en memoria dinamica    
+
+	return 0;
+}
+/*Delete
+delete permite liberar la memoria reservada con new.
+SIEMPRE que exista un new debe existir un delete
+correspondiente.*/
+#include<iostream>
+using namespace std;
+int main() {
+
+	int* numero = new int[5];
+	*numero = 5;
+
+	if (numero == NULL) {
+		cout << "No se pudo inicializar la variable :(";
+	}
+	else {
+		cout << "Se puede inicializar :)";
+	}
+
+	return 0;
+}
+
+     #include<iostream>
+using namespace std;
+int main() {
+
+	int N;
+	cout << "Ingrese el total de estudiantes: "; cin >> N;
+	int notas_estudiantes[N];//ESTATICA
+	
+	int* notas_est_dinamica;
+	notas_est_dinamica = new int[N];//DINAMICA	
+
+	return 0;
+}
+     
