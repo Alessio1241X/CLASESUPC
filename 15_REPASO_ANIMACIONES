@@ -1,0 +1,368 @@
+/*EJERCICIO DE RECTANGULO*/
+//#include "pch.h"
+//#include <iostream>
+//#include <time.h>
+//using namespace System;
+//using namespace std;
+//
+//int main()
+//{
+//    Console::CursorVisible = false;
+//    int x = 0, y = 0;
+//    int ancho = 20, largo = 10;
+//
+//    // Presionar una tecla para iniciar la animación
+//    cout << "Presiona Enter para iniciar la animación del rectángulo...";
+//    cin.get();
+//    system("cls");
+//
+//    // Lado superior (izquierda a derecha)
+//    for (x = 0; x <= ancho; x++) {
+//        Console::SetCursorPosition(x, 0);
+//        cout << "*";
+//        _sleep(100);
+//    }
+//
+//    // Lado derecho (arriba hacia abajo)
+//    for (y = 1; y <= largo; y++) {
+//        Console::SetCursorPosition(ancho, y);
+//        cout << "*";
+//        _sleep(100);
+//    }
+//
+//    // Lado inferior (derecha a izquierda)
+//    for (x = ancho - 1; x >= 0; x--) {
+//        Console::SetCursorPosition(x, largo);
+//        cout << "*";
+//        _sleep(100);
+//    }
+//
+//    // Lado izquierdo (abajo hacia arriba)
+//    for (y = largo - 1; y >= 1; y--) {
+//        Console::SetCursorPosition(0, y);
+//        cout << "*";
+//        _sleep(100);
+//    }
+//
+//    return 0;
+//}
+
+///*EJERCICIO DE LA ZETA */
+//#include "pch.h"
+//#include <iostream>
+//#include <time.h>
+//using namespace System;
+//using namespace std;
+//
+//int main() {
+//	Console::CursorVisible = false;
+//	int x = 0, y = 0;
+//	int ancho = 10,largo  = 10;
+//	cout << "Ingresa una tecla para comenzar la animacion: ";
+//	cin.get();
+//	system("cls");
+//
+//	for (x = 0; x <= ancho; x++) {
+//		Console::SetCursorPosition(x, 0);
+//		cout << "@ ";
+//		_sleep(100);
+//	}
+//	for (y = 1; y < largo; y++) {//para la diagonal 
+//		x = ancho - y;
+//		Console::SetCursorPosition(x, y);
+//		cout << "@ ";
+//		_sleep(100);
+//	}
+//	for(x=0;x<=ancho;x++){
+//		Console::SetCursorPosition(x, largo);
+//		cout << "@ ";
+//		_sleep(100);
+//	}
+//	return 0;
+//}
+/*zeta con diagonal invertida*/
+//#include"pch.h"
+//#include <iostream>
+//#include<string.h>
+//#include <time.h>
+//using namespace System;
+//using namespace std;
+//
+//void empezar_juego() {
+//	cout << "Ingresa una tecla para comenzar la animacion: ";
+//	cin.get();
+//	system("cls");
+//
+//}
+//int main() {
+//	Console::CursorVisible = false;
+//	int x = 0, y = 0;
+//	int ancho = 10,largo  = 10;
+//	empezar_juego();
+//
+//	for (x = 0; x <= ancho; x++) {
+//		Console::SetCursorPosition(x, 0);
+//		cout << "@ ";
+//		_sleep(100);
+//	}
+//	for (y = 1; y < largo; y++) {
+//		x = y;
+//		Console::SetCursorPosition(x, y);
+//		cout << "@ ";
+//		_sleep(100);
+//	}
+//	for (x = 0; x <= ancho; x++) {
+//		Console::SetCursorPosition(x,largo );
+//		cout << "@ ";
+//		_sleep(100);
+//	}
+//	return 0;
+//}
+//
+//#include"pch.h"
+//#include <iostream>
+//#include<string.h>
+//#include <time.h>
+//using namespace System;
+//using namespace std;
+//
+//void empezar_juego() {
+//    cout << "Ingresa una tecla para comenzar la animacion: ";
+//    cin.get();
+//    system("cls");
+//}
+//
+//int main() {
+//    Console::CursorVisible = false;
+//    int x = 0, y = 0;
+//    int altura = 8;
+//
+//    empezar_juego();
+//
+//    // Lado izquierdo
+//    for (y = 0; y < altura; y++) {
+//        x = altura - y;
+//        Console::SetCursorPosition(x, y);
+//        cout << "@ ";
+//        _sleep(100);
+//    }
+//
+//    // Base
+//
+//    for (x = 1; x <= 8; x++) {//FORMA RAPIDA
+//        Console::SetCursorPosition(x,altura);
+//        cout << "@ ";
+//        _sleep(100);
+//    }
+//    for (y = altura - 1; y >= 1; y--) {//IDEA PARA PARTIR EL TRIANGULO EN DOS
+//         Console::SetCursorPosition(altura, y);
+//         cout << "@ ";
+//         _sleep(100);
+//            }
+//    /*   for (x = 1; x <= 16; x++) {//FORMA RAPIDA
+//        Console::SetCursorPosition(x, altura);
+//        cout << "@ ";
+//        _sleep(100);
+//        }*/
+//    
+//    /*for (x = 1; x <= altura * 2; x++) {//FORMA ADAPTABLE
+//        Console::SetCursorPosition(x, altura);
+//        cout << "@ ";
+//        _sleep(100);
+//
+//    }*/
+//    // Lado derecho
+//    for (y = altura - 1; y >= 0; y--) {
+//        x = altura + y;
+//        Console::SetCursorPosition(x, y);
+//        cout << "@ ";
+//        _sleep(100);
+//    }
+//
+//    return 0;
+//}
+/*INTRODUCIR VALORES A LA ALTURA*/
+//void empezar_juego() {
+//	cout << "Ingresa una tecla para comenzar la animacion: ";
+//	cin.get();
+//	system("cls");
+//
+//}
+//int main() {
+//	Console::CursorVisible = false;
+//	int x = 0, y = 0,N=0;
+//    int altura = 10;
+//	empezar_juego();
+//    cout << "Ingrese la altura que desea el triangulo: "; cin >> N;
+//
+//        // Lado izquierdo
+//        for (y = 0; y < N; y++) {
+//            x = N - y;
+//            Console::SetCursorPosition(x, y);
+//            cout << "@ ";
+//            _sleep(100);
+//        }
+//
+//        // Base
+//        for (x = 1; x <= N * 2; x++) {
+//            Console::SetCursorPosition(x, N);
+//            cout << "@ ";
+//            _sleep(100);
+//        }
+//
+//        // Lado derecho
+//        for (y = N - 1; y >= 0; y--) {
+//            x = N + y;
+//            Console::SetCursorPosition(x, y);
+//            cout << "@ ";
+//            _sleep(100);
+//        }
+//
+//        return 0;
+//    }
+
+/*Ejercicio 1: Rombo (Diamante)
+Nivel: Intermedio
+Crea un rombo que se anime de la siguiente manera:
+
+Dibuja la mitad superior (triángulo invertido)
+Dibuja la mitad inferior (triángulo normal)*/
+//#include"pch.h"
+//#include <iostream>
+//#include<string.h>
+//#include <time.h>
+//using namespace System;
+//using namespace std;
+//
+//void empezar_juego() {
+//    cout << "Ingresa una tecla para comenzar la animacion: ";
+//    cin.get();
+//    system("cls");
+//}
+//
+//int main() {
+//    Console::CursorVisible = false;
+//    int x = 0, y = 0;
+//    int altura = 8;
+//    empezar_juego();
+//    //lado izquierdo superior
+//    for (y = 0; y <= altura; y++) {
+//        x = altura - y;
+//        Console::SetCursorPosition(x, y);
+//        cout << "@ ";
+//        _sleep(100);
+//    }
+//
+//    // Lado izquierdo inferior (desde centro hacia abajo-derecha)
+//    for (y = altura + 1; y <= altura * 2; y++) {
+//        x = y - altura;
+//        Console::SetCursorPosition(x, y);
+//        cout << "@ ";
+//        _sleep(100);
+//    }
+//
+//    // Lado derecho inferior (desde abajo hacia arriba-derecha)
+//    for (y = altura * 2 - 1; y >= altura; y--) {
+//        x = altura * 2 - y + altura;
+//        Console::SetCursorPosition(x, y);
+//        cout << "@ ";
+//        _sleep(100);
+//    }
+//
+//    // Lado derecho superior (desde centro hacia arriba-izquierda)
+//    for (y = altura - 1; y >= 0; y--) {
+//        x = altura + y;
+//        Console::SetCursorPosition(x, y);
+//        cout << "@ ";
+//        _sleep(100);
+//    }
+//
+//    return 0;
+//}
+/*SALIO UNA X*/
+//#include"pch.h"
+//#include <iostream>
+//#include<string.h>
+//#include <time.h>
+//using namespace System;
+//using namespace std;
+//
+//void empezar_juego() {
+//    cout << "Ingresa una tecla para comenzar la animacion: ";
+//    cin.get();
+//    system("cls");
+//}
+//
+//int main() {
+//    Console::CursorVisible = false;
+//    int x = 0, y = 0;
+//    int altura = 8;
+//    empezar_juego();
+//    for (y = 0; y < altura; y++) {
+//        x = altura - y;
+//        Console::SetCursorPosition(x, y);
+//        cout << "@ ";
+//        _sleep(100);
+//    }
+//    for (y = 0; y < altura; y++) {
+//        x = y;
+//        Console::SetCursorPosition(x, y);
+//        cout << "@ ";
+//        _sleep(100);
+//    }
+//   
+//    return 0;
+//}
+/*CODIGO ACABADO DE LA CASA*/
+#include"pch.h"
+#include <iostream>
+#include<string.h>
+#include <time.h>
+using namespace System;
+using namespace std;
+
+void empezar_juego() {
+    cout << "Ingresa una tecla para comenzar la animacion: ";
+    cin.get();
+    system("cls");
+}
+
+int main() {
+    Console::CursorVisible = false;
+    int x = 0, y = 0;
+    int altura = 4,largo=7,ancho=8;
+    empezar_juego();
+    
+    //lado izquierdo superior
+    for (y = 0; y <= altura; y++) {
+        x = altura - y;
+        Console::SetCursorPosition(x, y);
+        cout << "@ ";
+        _sleep(100);
+    }
+    //baja para el lado de la casa
+    for (int i = 0; i <= largo; i++) {
+        Console::SetCursorPosition(x, y+i);
+        cout << "@ ";
+        _sleep(100);
+    }
+    //base
+    for (x = 0; x <= ancho; x++) {
+        Console::SetCursorPosition(x,largo*2-1);
+        cout << "@ ";
+        _sleep(100);
+    }
+    //sube el lado de la casa
+    for (y = altura + largo - 1; y >= altura-2; y--) {
+        Console::SetCursorPosition(ancho, y+altura-2);
+        cout << "@ ";
+        _sleep(100);
+    } 
+    for (y = altura-1; y >=0; y--) {
+        x = altura + y;
+        Console::SetCursorPosition(x, y);
+        cout << "@ ";
+        _sleep(100);
+    }
+    return 0;
+}
