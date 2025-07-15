@@ -390,3 +390,65 @@ int main()
     cout << f << endl;
     cout << "El promedio es: " << Promedio(M);
 }
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+const int FILAS = 8;
+const int COLUMNAS = 8;
+
+void generar_matriz(int matriz[FILAS][COLUMNAS]) {
+	for (int i = 0; i < FILAS; i++) {
+		for (int j = 0; j < COLUMNAS; j++) {
+			matriz[i][j] = 1 + rand() % 7;
+		}
+	}
+}
+
+int main() {
+	srand(time(NULL));
+
+	int matriz_buscaminas[FILAS][COLUMNAS];
+	int resultado[FILAS][COLUMNAS];
+
+	generar_matriz(matriz_buscaminas);
+
+	// Calcular números alrededor de cada celda
+	for (int y = 0; y < FILAS; y++) {
+		for (int x = 0; x < COLUMNAS; x++) {
+			if (matriz_buscaminas[y][x] == 7) {
+				resultado[y][x] = 7;
+				continue;
+			}
+
+			int minas = 0;
+			// Revisar celdas alrededor
+			for (int i = y - 1; i <= y + 1; i++) {
+				for (int j = x - 1; j <= x + 1; j++) {
+					if (i >= 0 && i < FILAS && j >= 0 && j < COLUMNAS) {
+						if (i != y || j != x) {
+							if (matriz_buscaminas[i][j] == 7) minas++;
+						}
+					}
+				}
+			}
+			resultado[y][x] = minas;
+		}
+	}
+
+	// Mostrar resultado
+	for (int i = 0; i < FILAS; i++) {
+		cout << "\t\t\t";
+		for (int j = 0; j < COLUMNAS; j++) {
+			if (resultado[i][j] == 7)
+				cout << "# ";
+			else
+				cout << resultado[i][j] << " ";
+		}
+		cout << endl;
+	}
+
+	return 0;
+}
