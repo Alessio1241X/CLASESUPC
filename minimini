@@ -173,3 +173,229 @@ int main() {
 
     return 0;  // Terminar el programa
 }
+#include"pch.h"
+#include <iostream>
+#include <conio.h>   // Para leer una tecla sin presionar Enter
+#include <windows.h> // Para limpiar la pantalla
+
+using namespace std;
+
+// Variables globales (las puede usar todo el programa)
+int laberinto[20][20] = {
+    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+    {1,0,0,0,0,0,0,0,0,1,0,0,0,1,1,0,0,0,1,1},
+    {1,0,1,1,0,0,1,1,0,1,1,0,1,1,0,0,1,1,0,1},
+    {1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1},
+    {1,0,1,0,0,0,0,1,0,1,1,0,1,0,0,0,0,1,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1},
+    {1,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,1},
+    {1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1},
+    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+};
+// En el laberinto: 1 = pared, 0 = camino libre
+
+// Posición del jugador
+int jugador_x = 1;  // columna
+int jugador_y = 1;  // fila
+
+// Posición del enemigo que se mueve simple
+int enemigo_x = 2;   // columna (arriba del mapa)
+int enemigo_y = 7;   // fila
+
+// Posición de la meta
+int meta_x = 18;
+int meta_y = 18;
+
+// Estados del juego
+bool gano = false;
+bool perdio = false;
+
+// Variable para controlar si el enemigo va a la derecha o izquierda
+int direccion_enemigo = 1; // 1=derecha, 0=izquierda
+
+// Función para limpiar la pantalla
+void limpiar_pantalla() {
+    system("cls");
+}
+
+// Función para mostrar el laberinto
+void mostrar_laberinto() {
+    limpiar_pantalla();
+
+    cout << "=== JUEGO DE LABERINTO CON ENEMIGO ===" << endl;
+    cout << "Mueve el jugador (P) hasta la meta (M)" << endl;
+    cout << "¡CUIDADO! El enemigo (E) se mueve de lado a lado" << endl;
+    cout << "Usa: W=arriba, S=abajo, A=izquierda, D=derecha" << endl;
+    cout << "# = pared, espacio = camino libre" << endl;
+    cout << endl;
+
+    // Recorrer todas las filas
+    for (int fila = 0; fila < 20; fila++) {
+        // Recorrer todas las columnas de esta fila
+        for (int columna = 0; columna < 20; columna++) {
+
+            // ¿Está el jugador en esta posición?
+            if (jugador_x == columna && jugador_y == fila) {
+                cout << "P ";  // Mostrar jugador
+            }
+            // ¿Está el enemigo en esta posición?
+            else if (enemigo_x == columna && enemigo_y == fila) {
+                cout << "E ";  // Mostrar enemigo
+            }
+            // ¿Está la meta en esta posición?
+            else if (meta_x == columna && meta_y == fila) {
+                cout << "M ";  // Mostrar meta
+            }
+            // ¿Es una pared?
+            else if (laberinto[fila][columna] == 1) {
+                cout << "# ";  // Mostrar pared
+            }
+            // Si no, es camino libre
+            else {
+                cout << "  ";  // Mostrar espacio vacío
+            }
+        }
+        cout << endl;  // Saltar a la siguiente línea
+    }
+
+    cout << endl;
+    cout << "Controles: W(arriba) A(izquierda) S(abajo) D(derecha) Q(salir)" << endl;
+}
+
+// Función para mover al jugador
+void mover_jugador(char direccion) {
+    // Variables para la nueva posición
+    int nuevo_x = jugador_x;
+    int nuevo_y = jugador_y;
+
+    // Calcular nueva posición según la dirección
+    if (direccion == 'W' || direccion == 'w') {
+        nuevo_y = jugador_y - 1;  // Mover arriba
+    }
+    else if (direccion == 'S' || direccion == 's') {
+        nuevo_y = jugador_y + 1;  // Mover abajo
+    }
+    else if (direccion == 'A' || direccion == 'a') {
+        nuevo_x = jugador_x - 1;  // Mover izquierda
+    }
+    else if (direccion == 'D' || direccion == 'd') {
+        nuevo_x = jugador_x + 1;  // Mover derecha
+    }
+
+    // Verificar si la nueva posición es válida
+    bool posicion_valida = true;
+
+    // ¿Está fuera de los límites?
+    if (nuevo_x < 0 || nuevo_x >= 20 || nuevo_y < 0 || nuevo_y >= 20) {
+        posicion_valida = false;
+    }
+
+    // ¿Es una pared?
+    if (posicion_valida && laberinto[nuevo_y][nuevo_x] == 1) {
+        posicion_valida = false;
+    }
+
+    // Si la posición es válida, mover al jugador
+    if (posicion_valida) {
+        jugador_x = nuevo_x;
+        jugador_y = nuevo_y;
+
+        // ¿Llegó a la meta?
+        if (jugador_x == meta_x && jugador_y == meta_y) {
+            gano = true;
+        }
+    }
+}
+
+// Función muy simple para mover al enemigo
+void mover_enemigo() {
+    // Si va a la derecha
+    if (direccion_enemigo == 1) {
+        enemigo_x++;// Mover derecha
+
+        // Si llegó al final, cambiar dirección
+        if (enemigo_x >= 18) {
+            direccion_enemigo = 0; // Cambiar a izquierda
+        }
+    }
+    // Si va a la izquierda
+    else {
+        enemigo_x --; // Mover izquierda
+
+        // Si llegó al inicio, cambiar dirección
+        if (enemigo_x <= 2) {
+            direccion_enemigo = 1; // Cambiar a derecha
+        }
+    }
+
+    // Verificar si el enemigo atrapó al jugador
+    if (enemigo_x == jugador_x && enemigo_y == jugador_y) {
+        perdio = true;
+    }
+}
+
+// Función principal del programa
+int main() {
+    char tecla;  // Variable para guardar la tecla presionada
+
+    cout << "¡Bienvenido al Juego de Laberinto con Enemigo!" << endl;
+    cout << "El enemigo (E) se mueve de lado a lado. ¡Evítalo y llega a la meta (M)!" << endl;
+    cout << "Presiona cualquier tecla para comenzar..." << endl;
+    _getch();  // Esperar a que el usuario presione una tecla
+
+    // Bucle principal del juego
+    while (true) {
+        mostrar_laberinto();
+
+        // ¿El jugador ganó?
+        if (gano) {
+            cout << endl;
+            cout << "¡¡¡FELICIDADES!!! ¡GANASTE!" << endl;
+        }
+        // ¿El enemigo atrapó al jugador?
+        else if (perdio) {
+            cout << endl;
+            cout << "¡PERDISTE!" << endl;
+            cout << "Presiona R para intentar otra vez o Q para salir: ";
+
+            tecla = _getch();  // Leer tecla
+
+          
+        }
+        else {
+            // El juego continúa, leer movimiento del jugador
+            tecla = _getch();  // Leer tecla sin presionar Enter
+
+            // ¿Quiere salir?
+            if (tecla == 'Q' || tecla == 'q') {
+                break;  // Salir del bucle
+            }
+
+            // Mover al jugador
+            mover_jugador(tecla);
+
+            // Mover al enemigo después del jugador (si el juego sigue)
+            if (!gano && !perdio) {
+                mover_enemigo();
+            }
+        }
+    }
+
+    cout << endl;
+    cout << "¡Gracias por jugar!" << endl;
+    cout << "Presiona cualquier tecla para cerrar..." << endl;
+    _getch();
+
+    return 0;  // Terminar el programa
+}
