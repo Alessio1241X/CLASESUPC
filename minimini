@@ -1,0 +1,175 @@
+#include "pch.h"
+#include <iostream>
+#include <conio.h>   // Para leer una tecla sin presionar Enter
+#include <windows.h> // Para limpiar la pantalla
+using namespace std;
+using namespace System;
+
+// Variables globales
+void gotoxy(int x, int y) { // Posicion del cursor
+    Console::SetCursorPosition(x, y);
+}
+
+// Laberinto básico con paredes
+char laberinto[21][22] = {
+    "####################",
+    "#                  #",
+    "########### ####### #",
+    "#                # #",
+    "# ############### # #",
+    "#     # #       # # #",
+    "# ### # ####### # # #",
+    "# #             # # #",
+    "# # ############### #",
+    "# #               # #",
+    "# ############### # #",
+    "# #   #     #     # #",
+    "# # # # ### # ### # #",
+    "# # # #   # #   # # #",
+    "# # # ### # # ### # #",
+    "# # #     # #     # #",
+    "# # ####### ####### #",
+    "# ###################",
+    "#                  ##",
+    "#####################"
+};
+
+// Posición del jugador
+int jugador_x = 1;  // columna
+int jugador_y = 1;  // fila
+
+// Posición de la meta
+int meta_x = 18;
+int meta_y = 18;
+
+// ¿El jugador ya ganó?
+bool gano = false;
+
+// Función para mostrar el laberinto
+void mostrar_laberinto() {
+    system("cls");
+    cout << "=== JUEGO DE LABERINTO BASICO ===" << endl;
+    cout << "Mueve el jugador (P) hasta la meta (M)" << endl;
+    cout << "Usa: W=arriba, S=abajo, A=izquierda, D=derecha" << endl;
+    cout << "# = pared, espacio = camino libre" << endl;
+    cout << endl;
+
+    // Mostrar el laberinto
+    for (int i = 0; i < 20; i++) {
+        gotoxy(0, 6 + i);
+        for (int j = 0; j < 20; j++) {
+            cout << laberinto[i][j];
+        }
+    }
+
+    // Mostrar jugador
+    gotoxy(jugador_x, 6 + jugador_y);
+    cout << "P";
+
+    // Mostrar meta
+    gotoxy(meta_x, 6 + meta_y);
+    cout << "M";
+}
+
+// Función para mover al jugador
+void mover_jugador(char direccion) {
+    // Variables para la nueva posición
+    int nuevo_x = jugador_x;
+    int nuevo_y = jugador_y;
+
+    // Calcular nueva posición según la dirección
+    if (direccion == 'W' || direccion == 'w') {
+        nuevo_y = jugador_y - 1;  // Mover arriba
+    }
+    else if (direccion == 'S' || direccion == 's') {
+        nuevo_y = jugador_y + 1;  // Mover abajo
+    }
+    else if (direccion == 'A' || direccion == 'a') {
+        nuevo_x = jugador_x - 1;  // Mover izquierda
+    }
+    else if (direccion == 'D' || direccion == 'd') {
+        nuevo_x = jugador_x + 1;  // Mover derecha
+    }
+
+    // Verificar si la nueva posición es válida
+    bool posicion_valida = true;
+
+    // ¿Está fuera de los límites?
+    if (nuevo_x < 0 || nuevo_x >= 20 || nuevo_y < 0 || nuevo_y >= 20) {
+        posicion_valida = false;
+    }
+
+    // ¿Es una pared? (CORREGIDO)
+    if (posicion_valida && laberinto[nuevo_y][nuevo_x] == '#') {
+        posicion_valida = false;
+    }
+
+    // Si la posición es válida, mover al jugador
+    if (posicion_valida) {
+        jugador_x = nuevo_x;
+        jugador_y = nuevo_y;
+
+        // ¿Llegó a la meta?
+        if (jugador_x == meta_x && jugador_y == meta_y) {
+            gano = true;
+        }
+    }
+}
+
+// Función para reiniciar el juego
+void reiniciar_juego() {
+    jugador_x = 1;
+    jugador_y = 1;
+    gano = false;
+}
+
+// Función principal del programa
+int main() {
+    char tecla;  // Variable para guardar la tecla presionada
+
+    cout << "¡Bienvenido al Juego de Laberinto!" << endl;
+    cout << "Presiona cualquier tecla para comenzar..." << endl;
+    _getch();  // Esperar a que el usuario presione una tecla
+
+    // Bucle principal del juego
+    while (true) {
+        mostrar_laberinto();
+
+        // ¿El jugador ganó?
+        if (gano) {
+            cout << endl;
+            cout << "¡¡¡FELICIDADES!!! ¡GANASTE!" << endl;
+
+            tecla = _getch();  // Leer tecla
+
+            if (tecla == 'R' || tecla == 'r') {
+                reiniciar_juego();  // Empezar de nuevo
+                continue;  // Continuar el bucle
+            }
+            else if (tecla == 'Q' || tecla == 'q') {
+                break;  // Salir del bucle y terminar el programa
+            }
+        }
+        else {
+            // El juego continúa, leer movimiento del jugador
+            cout << endl;
+            cout << "Presiona una tecla para moverte (Q para salir): ";
+            tecla = _getch();  // Leer tecla sin presionar Enter
+
+            // ¿Quiere salir?
+            if (tecla == 'Q' || tecla == 'q') {
+                break;  // Salir del bucle
+            }
+
+            // Mover al jugador
+            mover_jugador(tecla);
+        }
+    }
+
+    cout << endl;
+    cout << "¡Gracias por jugar!" << endl;
+    cout << "Presiona cualquier tecla para cerrar..." << endl;
+    _getch();
+
+    return 0;  // Terminar el programa
+}
