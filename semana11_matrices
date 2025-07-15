@@ -394,10 +394,10 @@ int main()
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#define FILAS  5
+#define COLUMNAS  5
 using namespace std;
 
-const int FILAS = 8;
-const int COLUMNAS = 8;
 
 void generar_matriz(int matriz[FILAS][COLUMNAS]) {
 	for (int i = 0; i < FILAS; i++) {
@@ -424,6 +424,7 @@ int main() {
 			}
 
 			int minas = 0;
+
 			// Revisar celdas alrededor
 			for (int i = y - 1; i <= y + 1; i++) {
 				for (int j = x - 1; j <= x + 1; j++) {
