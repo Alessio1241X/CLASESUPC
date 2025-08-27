@@ -1,0 +1,49 @@
+#include "pch.h"
+#include <iostream>
+#include<conio.h>
+#include<ctime>
+using namespace System;
+using namespace std;
+
+struct Persona {
+	int edad;
+	int valor;
+};
+
+void Info_persona(Persona* personas,int tam) {
+	
+	for (int i = 0; i < tam; i++){
+		cout << "Digite su edad: "; cin >> personas[i].edad;
+		cout << "Digite su valor: "; cin >> personas[i].valor;
+		cout << endl;
+	}
+	system("cls");
+}
+void EdadMayor(Persona* personas, int* mayoredad,int tam) {
+	int mayor = personas[0].edad;
+	for (int i = 0; i < tam; i++) {
+		if (personas[i].edad > mayor) {
+			mayor = personas[i].edad;
+		}
+	}
+	cout << "La edad mayor es: " << mayor;
+}
+int main() {
+	int tam;
+	cout << "DIGITE EL ESPACIO DEL ARREGLO: "; cin >> tam;
+	int* mayoredad = new int;
+	Persona* Personas = new Persona[tam];
+	
+	Info_persona(Personas,tam);
+	 EdadMayor(Personas, mayoredad,tam);
+
+
+	_getch();
+	return 0;
+}
+	
+
+
+
+
+
