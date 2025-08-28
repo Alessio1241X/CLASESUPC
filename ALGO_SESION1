@@ -1,49 +1,74 @@
 #include "pch.h"
-#include <iostream>
+#include<iostream>
 #include<conio.h>
-#include<ctime>
-using namespace System;
 using namespace std;
+using namespace System;
 
+const int FILAS = 5;
+const int COLUMNAS = 5;
+
+int** crearMatriz() {//crea un arreglo de casilleros. Cada casillero tiene espacio para guardar la dirección de otro casillero.
+    int** matriz = new int* [FILAS];
+    for (int i = 0; i < FILAS; i++){
+        matriz[i] = new int[COLUMNAS];
+    }
+    return matriz;
+}
+void generardatos_matriz(int** matriz) {//Se genera la matriz mediante punteros
+    for (int i = 0; i < FILAS; i++) {
+        for (int j = 0; j < COLUMNAS; j++) {
+            matriz[i][j]=0;
+        }
+    }
+}
+void mostrardatos_matriz(int** matriz) {
+    for (int i = 0; i < FILAS; i++) {
+        for (int j = 0; j < COLUMNAS; j++) {
+           cout<< matriz[i][j];
+        }
+    cout << endl;
+    }
+}
 struct Persona {
-	int edad;
-	int valor;
+    int edad;
+    int valor;
 };
-
-void Info_persona(Persona* personas,int tam) {
-	
-	for (int i = 0; i < tam; i++){
-		cout << "Digite su edad: "; cin >> personas[i].edad;
-		cout << "Digite su valor: "; cin >> personas[i].valor;
-		cout << endl;
-	}
-	system("cls");
+void ingresar_datos(Persona* persona, int tam) {
+    
+    for (int i = 0; i < tam; i++) {
+        cout << i + 1 << ". Digite su edad: "; cin >> persona[i].edad;
+        cout <<  "Digite su valor: "; cin >> persona[i].valor;
+    }
+    system("cls");
 }
-void EdadMayor(Persona* personas, int* mayoredad,int tam) {
-	int mayor = personas[0].edad;
-	for (int i = 0; i < tam; i++) {
-		if (personas[i].edad > mayor) {
-			mayor = personas[i].edad;
-		}
-	}
-	cout << "La edad mayor es: " << mayor;
+void Mostrar_datos(Persona* persona, int tam) {
+
+    for (int i = 0; i < tam; i++) {
+        cout << i + 1 << ".Edad: " << persona[i].edad;
+        cout << "\t";
+        cout <<  "Valor: "<<persona[i].valor;
+        cout << endl;
+    }
 }
-int main() {
-	int tam;
-	cout << "DIGITE EL ESPACIO DEL ARREGLO: "; cin >> tam;
-	int* mayoredad = new int;
-	Persona* Personas = new Persona[tam];
-	
-	Info_persona(Personas,tam);
-	 EdadMayor(Personas, mayoredad,tam);
-
-
-	_getch();
-	return 0;
+void liberarMemoria(Persona* personas) {
+    delete[] personas;
+    personas = nullptr;//es un valor especial que significa “este puntero no apunta a nada”,se usa en especial para punteros.
 }
-	
 
+int main()
+{
+    int** numeros = crearMatriz();
+    int tam;
+    cout << "Ingrese el tamaño del arreglo: "; cin >> tam;
+    Persona* personas = new Persona[tam];
+    ingresar_datos(personas, tam);
+    Mostrar_datos(personas, tam);
+    cout << "#########################################"<<endl;
+    generardatos_matriz(numeros);
+    mostrardatos_matriz(numeros);
 
-
-
-
+    liberarMemoria(personas);
+    
+    _getch();
+    return 0;
+}
