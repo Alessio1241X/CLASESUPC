@@ -1,74 +1,209 @@
-#include "pch.h"
+//#include "pch.h"
+//#include<iostream>
+//#include<conio.h>
+//using namespace std;
+//using namespace System;
+//
+//const int FILAS = 5;
+//const int COLUMNAS = 5;
+//
+//int** crearMatriz() {//crea un arreglo de casilleros. Cada casillero tiene espacio para guardar la dirección de otro casillero.
+//    int** matriz = new int* [FILAS];
+//    for (int i = 0; i < FILAS; i++){
+//        matriz[i] = new int[COLUMNAS];
+//    }
+//    return matriz;
+//}
+//void generardatos_matriz(int** matriz) {//Se genera la matriz mediante punteros
+//    for (int i = 0; i < FILAS; i++) {
+//        for (int j = 0; j < COLUMNAS; j++) {
+//            matriz[i][j]=0;
+//        }
+//    }
+//}
+//void mostrardatos_matriz(int** matriz) {
+//    for (int i = 0; i < FILAS; i++) {
+//        for (int j = 0; j < COLUMNAS; j++) {
+//           cout<< matriz[i][j];
+//        }
+//    cout << endl;
+//    }
+//}
+//struct Persona {
+//    int edad;
+//    int valor;
+//};
+//void ingresar_datos(Persona* persona, int tam) {
+//    
+//    for (int i = 0; i < tam; i++) {
+//        cout << i + 1 << ". Digite su edad: "; cin >> persona[i].edad;
+//        cout <<  "Digite su valor: "; cin >> persona[i].valor;
+//    }
+//    system("cls");
+//}
+//void Mostrar_datos(Persona* persona, int tam) {
+//
+//    for (int i = 0; i < tam; i++) {
+//        cout << i + 1 << ".Edad: " << persona[i].edad;
+//        cout << "\t";
+//        cout <<  "Valor: "<<persona[i].valor;
+//        cout << endl;
+//    }
+//}
+//void liberarMemoria(Persona* personas) {
+//    delete[] personas;
+//    personas = nullptr;//es un valor especial que significa “este puntero no apunta a nada”,se usa en especial para punteros.
+//}
+//
+//int main()
+//{
+//    int** numeros = crearMatriz();
+//    int tam;
+//    cout << "Ingrese el tamaño del arreglo: "; cin >> tam;
+//    Persona* personas = new Persona[tam];
+//    ingresar_datos(personas, tam);
+//    Mostrar_datos(personas, tam);
+//    cout << "#########################################"<<endl;
+//    generardatos_matriz(numeros);
+//    mostrardatos_matriz(numeros);
+//
+//    liberarMemoria(personas);
+//    
+//    _getch();
+//    return 0;
+//}
+#include"pch.h"
 #include<iostream>
-#include<conio.h>
+#include<ctime>
+
 using namespace std;
 using namespace System;
 
-const int FILAS = 5;
-const int COLUMNAS = 5;
+const int MAX = 100;
 
-int** crearMatriz() {//crea un arreglo de casilleros. Cada casillero tiene espacio para guardar la dirección de otro casillero.
-    int** matriz = new int* [FILAS];
-    for (int i = 0; i < FILAS; i++){
-        matriz[i] = new int[COLUMNAS];
-    }
-    return matriz;
+void generar(int* arreglo, int& n, int cantidad) {
+	srand(time(NULL));
+	n = cantidad;
+	for (int i = 0; i < n; i++)	{
+		arreglo[i] = rand() % 100;
+	}
 }
-void generardatos_matriz(int** matriz) {//Se genera la matriz mediante punteros
-    for (int i = 0; i < FILAS; i++) {
-        for (int j = 0; j < COLUMNAS; j++) {
-            matriz[i][j]=0;
-        }
-    }
-}
-void mostrardatos_matriz(int** matriz) {
-    for (int i = 0; i < FILAS; i++) {
-        for (int j = 0; j < COLUMNAS; j++) {
-           cout<< matriz[i][j];
-        }
-    cout << endl;
-    }
-}
-struct Persona {
-    int edad;
-    int valor;
-};
-void ingresar_datos(Persona* persona, int tam) {
-    
-    for (int i = 0; i < tam; i++) {
-        cout << i + 1 << ". Digite su edad: "; cin >> persona[i].edad;
-        cout <<  "Digite su valor: "; cin >> persona[i].valor;
-    }
-    system("cls");
-}
-void Mostrar_datos(Persona* persona, int tam) {
-
-    for (int i = 0; i < tam; i++) {
-        cout << i + 1 << ".Edad: " << persona[i].edad;
-        cout << "\t";
-        cout <<  "Valor: "<<persona[i].valor;
-        cout << endl;
-    }
-}
-void liberarMemoria(Persona* personas) {
-    delete[] personas;
-    personas = nullptr;//es un valor especial que significa “este puntero no apunta a nada”,se usa en especial para punteros.
+//No es necesario poner & ya que no se modificara nada
+void mostrar(int* arreglo, int n) {
+	if (n == 0) {
+		cout << "El arreglo esta vacio: " << endl;
+	}
+	for (int i = 0; i < n; i++)
+	{
+		cout << arreglo[i] << " ";
+	}
 }
 
-int main()
-{
-    int** numeros = crearMatriz();
-    int tam;
-    cout << "Ingrese el tamaño del arreglo: "; cin >> tam;
-    Persona* personas = new Persona[tam];
-    ingresar_datos(personas, tam);
-    Mostrar_datos(personas, tam);
-    cout << "#########################################"<<endl;
-    generardatos_matriz(numeros);
-    mostrardatos_matriz(numeros);
+int obtener_posiciondelvalor(int* arreglo, int n, int valor_buscar) {
+	int posicion;
+	for (int i = 0; i < n; i++)	{
+		if (arreglo[i] == valor_buscar) {
+			posicion = i;
+			break;
+		}
+	}
+	return posicion;
+}
+//Esto si modificara el n y se actualice a la referencia por eso ,el uso del &
+bool eliminar(int* arreglo, int& n, int posicion) {
+	bool se_elimina = false;
+	if (posicion<0 || posicion>=n)return se_elimina;
+	for (int i = posicion; i < n-1; i++){//el recorrido en la posicion a eliminar
+		arreglo[i] = arreglo[i + 1];//desplaza hacia la izquierda
+	}
+	n--;
+	se_elimina = true;
+	return se_elimina;
+}
+void ordenardemenor(int* arreglo, int n) {
+	int aux = 0;
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (arreglo[j] > arreglo[i]) {
+			     aux = arreglo[i];
+				arreglo[i] = arreglo[j];
+				arreglo[j] = aux;
+			}
+		}
+	}
+	cout << "Arreglo en orden: " << endl;
+	for (int i = 0; i < n; i++) {
+		cout << arreglo[i] << " ";
+	}			
+}
 
-    liberarMemoria(personas);
-    
-    _getch();
-    return 0;
+int main() {
+	//Declaramos el arreglo para hacer uso de memoria dinamica(HEAP)
+	int* arreglo = new int[MAX];
+	int n = 0,cantidad;
+	int opcion,valorabuscar,posicion;
+	bool se_elimina ;
+	do {
+		cout << endl;
+		cout << "MENU" << endl;
+		cout << "1. Generar arreglo aleatorio" << endl;
+		cout << "2. Mostrar datos del arreglo" << endl;
+		cout << "3. Obtener posicion en el arreglo" << endl;
+		cout << "4. Ordenar el arreglo de menor a mayor" << endl;
+		cout << "5. Eliminar la posicion del arreglo" << endl;
+		cout << "0. Salir" << endl;
+		cout << "SELECCIONE UNA OPCION: " << endl;
+		cin >> opcion;
+
+		switch (opcion)
+		{
+		case 1: 
+			cout << "Ingrese cantidad de elementos (1 a " << MAX << "):";
+			cin >> cantidad;
+			if (cantidad > 0 && cantidad < MAX) {
+				generar(arreglo, n, cantidad);
+				cout<<endl;
+				cout << "ARREGLO GENERADO" << endl;
+			}
+			else {
+				cout << "CANTIDAD INVALIDA :(";
+			}
+			break;
+		case 2:
+			mostrar(arreglo, n);
+			break;
+		case 3:
+			cout << "Ingresa el valor a buscar: ";
+			cin >> valorabuscar;
+			posicion=obtener_posiciondelvalor(arreglo, n, valorabuscar);
+
+			if (posicion != -1) {
+				cout << "El valor " << valorabuscar << " se ubico en la posicion " << posicion << endl;
+
+			}
+			else {
+				cout << "El valor " << valorabuscar << " no se encontro en el arreglo" << endl;
+			}
+		case 4:
+			ordenardemenor(arreglo, n);
+			break;
+		case 5:
+			cout << "Ingrese la posicion a eliminar: "; cin >> posicion;
+			se_elimina = eliminar(arreglo, n, posicion);
+			if (se_elimina) {
+				cout << "Se elimino el valor de la posicion "<<posicion<<endl;
+				mostrar(arreglo, n);
+			}
+			else {
+				cout << "EL DATO NO EXISTE :)"<<endl;
+			}
+			break;
+		}
+	} while (opcion != 0);
+	
+
+	//Liberamos la memoria
+	delete[] arreglo;
+	system("pause>NULL");
+	return 0;
 }
