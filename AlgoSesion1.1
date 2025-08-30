@@ -1,0 +1,127 @@
+//#include "pch.h"
+//#include<iostream>
+//#include<stdlib.h>//new y delete[]
+//using namespace System;
+//using namespace std;
+//
+//char** crearpupiletras(int n) {
+//    char** pupiletras = new char* [n];
+//    for (int i = 0; i < n; i++) {
+//        pupiletras[i] = new char[n];
+//    }
+//    return pupiletras;
+//}
+//void generarcontenidopupiletras(char** pupiletras, int n) {
+//    for (int i = 0; i < n; i++) {
+//        for (int j = 0; j < n; j++) {
+//            pupiletras[i][j] = 'A' + rand() % 26;
+//        }
+//    }
+//}
+//void mostrarcontenido(char** pupiletras, int n) {
+//    for (int i = 0; i < n; i++) {
+//        for (int j = 0; j < n; j++) {
+//            cout << pupiletras[i][j];
+//        }
+//        cout << endl;
+//    }
+//}
+//void buscarVocalAbierta(char** pupiletras, int n) {
+//    int ultimavocal;
+//    for (int i = 0; i < n; i++) {
+//        for (int j = 0; j <= n - 4; j++) {//se le resta 4,
+//            ultimavocal = pupiletras[i][j + 3];
+//            if (ultimavocal == 'A' || ultimavocal == 'E' || ultimavocal == 'O') {
+//                cout << "f =" << i << "- c" << j << " Vocal " << (char)ultimavocal << endl;
+//            }
+//        }
+//    }
+//
+//}
+//void buscarVocalcerrada(char** pupiletras, int n) {
+//    int ultimavocal;
+//    for (int i = 0; i < n; i++) {
+//        for (int j = 0; j <= n - 4; j++) {//se le resta 4,
+//            ultimavocal = pupiletras[i][j + 3];
+//            if (ultimavocal == 'I' || ultimavocal == 'U') {
+//                cout << "f =" << i << "- c" << j << " Vocal " << (char)ultimavocal << endl;
+//            }
+//        }
+//    }
+//
+//}
+//int main()
+//{
+//    int n = 10;
+//    char** pupiletra = crearpupiletras(n);
+//    generarcontenidopupiletras(pupiletra, n);
+//    mostrarcontenido(pupiletra, n);
+//    cout << "\n\nVOCALES ABIERTAS: " << endl;
+//    buscarVocalAbierta(pupiletra, n);
+//    cout << "\n\nVOCALES CERRADAS: " << endl;
+//    buscarVocalcerrada(pupiletra, n);
+//
+//    return 0;
+//}
+#include "pch.h"
+#include<iostream>
+#include<conio.h>
+#include<stdlib.h>//new y delete[]
+using namespace System;
+using namespace std;
+
+struct Personaje {
+	int x, y;
+	string cabeza, cuerpo, pies;
+};
+
+void construirpersonajeV1(Personaje* pj, string c, string cu, string p, int x, int y) {
+	pj->cabeza = c;
+	pj->cuerpo = cu;
+	pj->pies = p;
+	pj->x = x;
+	pj->y = y;
+}
+
+Personaje* construirPersonajeV2(string c, string cu, string p, int x, int y) {//da la libertade de mandar cualquier conjunto de caracteres
+	Personaje* pj = new Personaje;
+	pj->cabeza = c;
+	pj->cuerpo = cu;
+	pj->pies = p;
+	pj->x = x;
+	pj->y = y;
+	return pj;
+}
+void dibujarPersonaje(Personaje* pj) {
+	Console::SetCursorPosition(pj->x, pj->y); cout << pj->cabeza;
+	Console::SetCursorPosition(pj->x, pj->y + 1); cout << pj->cuerpo;
+	Console::SetCursorPosition(pj->x, pj->y + 2); cout << pj->pies;
+}
+void borrrarPersonaje(Personaje* pj) {
+	Console::SetCursorPosition(pj->x, pj->y); cout << "      ";
+	Console::SetCursorPosition(pj->x, pj->y + 1); cout << "     ";
+	Console::SetCursorPosition(pj->x, pj->y + 2); cout << "     ";
+}
+void moverpersonaje(Personaje* pj, char tecla) {
+	if (tecla == 'w')pj->y--;
+	if (tecla == 'a')pj->x--;
+	if (tecla == 's')pj->y++;
+	if (tecla == 'd')pj->x++;
+}
+int main() {
+
+	Personaje* hamp = construirPersonajeV2("  O ", "/ | |", "_ | _", 10, 5);
+	dibujarPersonaje(hamp);
+	while (true)
+	{
+		if (_kbhit()) {
+			char tecla = _getch();
+			borrrarPersonaje(hamp);
+			moverpersonaje(hamp, tecla);
+			dibujarPersonaje(hamp);
+		}
+	}
+	delete hamp;
+	system("pause>0");
+	return 0;
+}
