@@ -1,0 +1,173 @@
+//EJERCICIO DE MEMORIA DINAMICA
+#include "pch.h"
+#include<iostream>
+#include<stdlib.h>
+#include<string>
+#include<ctime>
+using namespace std;
+using namespace System;
+
+const int MAX = 100;
+
+struct Persona {
+	string nombre;
+	int edad;
+};
+ 
+string obtenernombre_aleatorio() {
+	string nombres[] = { "Alessio","Luis","Pedro","Sebas","Walter","Henry","Enzo","Ana",
+	"Mario","Daniel","Carlos","Andrés","Felipe","Raúl","Iván","Ricardo","Diego","Jorge",
+	"Arturo","Hugo","Fernando","Gabriel","Manuel","Julián","Cristian","Oscar","Emilio","Esteban",
+	"Lucía","María","Camila","Valeria","Paula","Carolina","Andrea","Claudia","Gabriela","Isabel",
+	"Sofía","Rosa","Teresa","Patricia","Verónica","Elena","Silvia","Lorena","Beatriz","Marta",
+	"Adrián","Tomás","Vicente","Martín","Álvaro","Rodrigo","Samuel","Rubén","David","Jonathan",
+	"Ángel","Mateo","Francisco","Sebastián","Gonzalo","Ignacio","Héctor","Julio","Nicolás","Pablo",
+	"Alejandra","Natalia","Daniela","Carmen","Jimena","Victoria","Renata","Alicia","Pilar","Noelia",
+	"Rocío","Sara","Alejandra","Florencia","Montserrat","Julia","Francisca","Amelia","Inés","Mariana",
+	"Elsa","Rebeca","Ángela","Fabiola","Cecilia","Bárbara","Aurora","Josefina","Regina","Tamara","Aracely","Joquer"
+	};
+	//aumentamos la poblacion de nombres y le colocamos a la posicion que como maximo tome el MAX
+	int pos = rand() % MAX;//va de 0 a 101
+	return nombres[pos];
+}
+//esta funcion dice si existe o no el nombre
+bool verificar_existenombre(Persona* personas, int n, string nombre) {
+	bool existe = false;
+	for (int i = 0; i < n; i++){
+		if (personas[i].nombre == nombre) {
+			existe = true;
+		}
+	}
+	return existe;
+}
+//pasamos el n como referencia porque se aumentara o cambiara valores
+void generar(Persona* personas, int& n,int cantidad) {
+	srand(time(0));
+	n = 0;//contador real de personas generados
+	string nombre;
+	bool existe_nombre;
+	//cantidad define lo ingresado por el usuario
+	for (int i = 0; i < cantidad;){
+		nombre= obtenernombre_aleatorio();
+		existe_nombre =verificar_existenombre(personas,n,nombre);
+
+		if (!existe_nombre) {
+			personas[i].nombre = nombre;
+			personas[i].edad = 18 + rand() % 43;//edades entre 18 y 60;||18 y 60-18+1
+			n++;//registramos las personas
+			i++;//avanzamos si logramos obtener personas con nombre unico
+		}
+	}
+}
+int obtener_posiciondelapersona(Persona* personas, int n, string nombre) {
+	int posicion=-1;
+	for (int i = 0; i < n; i++) {
+		if (personas[i].nombre == nombre) {
+			posicion = i;
+		}
+	}
+		return posicion;
+}
+
+void ordenar_edad(Persona* personas, int n) {
+	Persona aux;
+	for (int i = 0; i < n - 1; i++){
+		for (int j = i+1; j < n; j++) {
+			if (personas[i].edad > personas[j].edad) {
+				aux = personas[i];
+				personas[i] = personas[j];
+				personas[j] = aux;
+			}
+		}
+	}
+}
+
+bool eliminar_personadeunapos(Persona* personas, int& n, int pos) {
+	bool eliminado = false;
+	if (pos<0 || pos>=n) return eliminado;
+	for (int i = pos; i < n-1; i++){
+		personas[i] = personas[i + 1];
+	}
+	n--;
+	eliminado = true;
+	return eliminado;
+}
+
+void mostrar(Persona* personas, int n) {
+	if (n == 0) {
+		cout << "El arreglo esta vacio"<<endl;
+		return;
+	}
+		for (int i = 0; i < n; i++)	{
+			cout << i +1<< ". " << personas[i].nombre << " Edad: " << personas[i].edad << endl;
+		}
+}
+int main() {
+
+	Persona* personas = new Persona[MAX];//Reservamos memoria dinamica
+	int n=0,opcion,cantidad=0, posicion_depersona;
+	string nombre;
+	bool eliminado;
+
+	do
+	{
+		cout << "--------------------"<<endl;
+		cout << "\nMENU" << endl;
+		cout << "1. Generar Personas" << endl;
+		cout << "2. Obtener posicion de persona" << endl;
+		cout << "3. Ordenar personas por edad" << endl;
+		cout << "4. Eliminar persona" << endl;
+		cout << "0. SALIR" << endl;
+		cout << "SELECCIONA UNA OPCION DEL MENU:" << endl;
+		cin >> opcion;
+		cin.ignore();//ignora todos los espacios en blancos
+		switch (opcion){
+
+		case 1: 
+			cout << "Ingresa la cantidad de personas a generar: ";
+			cin >> cantidad;
+			generar(personas, n, cantidad);
+			mostrar(personas, n);
+			break;
+		
+		case 2: 
+			cout << "Ingrese el nombre de la persona a buscar: ";
+			getline(cin, nombre);
+			
+			posicion_depersona=obtener_posiciondelapersona(personas, n, nombre);
+		
+			if (posicion_depersona != 1) {
+				cout << "Encontrado en posicion " << posicion_depersona +1<< ": " << personas[posicion_depersona].nombre
+					<< ", " << personas[posicion_depersona].edad << endl;
+			}
+			else {
+				cout << "PERSONA NO ENCONTRADA CON ESE NOMBRE :(" << endl;
+			}
+			break;
+		
+		case 3:
+			ordenar_edad(personas, n);
+			mostrar(personas, n);
+			break;
+
+		case 4: 
+			cout << "LA POSICION EMPIEZA DESDE 0 " << endl;
+			cout << "Ingrese la posicion de la persona a eliminar: ";
+			cin >> posicion_depersona;
+			eliminado = eliminar_personadeunapos(personas, n, posicion_depersona);
+			if (posicion_depersona ) {
+				cout << "Persona eliminada del arreglo de la posicion " << posicion_depersona << endl;
+				mostrar(personas, n);
+			}
+			else {
+				cout << "No existe una persona en la posicion " << posicion_depersona << endl;
+			}
+		}
+	
+
+	} while (opcion!=0);
+
+	delete[]personas;
+	system("pause>NULL");
+	return 0;
+}
