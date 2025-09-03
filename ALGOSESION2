@@ -1,0 +1,125 @@
+//Persona.h
+#pragma once
+#include<string>
+
+using namespace std;
+class Persona//tiene modificadores de acceso
+				//public,private,protected
+		//Constructor: Crea o reserva espacio de memoria para el objeto
+		// aquel metodo que lleva el mismo nombre que la clase
+		//Destructor: Liberar espacio de memoria
+{
+private:
+	string nombre;
+	int edad;
+	int dni;
+
+public:
+	//Sobrecarga de constructores
+	Persona();
+	Persona(string nombre,int edad,int dni);
+	Persona(string nombre);
+	
+	//Destructor no recibe parametros una clase solo puedo tener un destructor
+	//pero si mas de un constructor
+	~Persona();
+	//Los atributos deben de ser privado
+	//Metodos Lectura y escritura 
+	// lectura: get
+	// escritura: set
+
+	//Recibe valor
+	void setNombre(string nombre);
+	void setEdad(int edad);
+	void setDni(int dni);
+
+	//Retorna Valor
+	string getNombre();
+	int getEdad();
+	int getDni();
+
+};
+//Persona.cpp
+#include "pch.h"
+#include "Persona.h"
+#include<string>
+
+//SOLO LOS METODOS SE PASAN AL .cpp
+
+Persona::Persona() {
+	this->nombre = "Alessio Ccasani";
+	this->edad = 18;
+	this->dni = 12345678;
+}
+
+Persona::Persona(string nombre, int edad, int dni) {
+	this->nombre = nombre;
+	this->edad = edad;
+	this->dni = dni;
+
+}
+Persona::Persona(string nombre) {
+	this->nombre = nombre;
+	this->edad = 18;
+	this->dni = 12345678;
+}
+
+
+Persona::~Persona() {
+
+}
+
+
+void Persona::setNombre(string nombre) {
+	this->nombre = nombre;
+}
+void Persona::setEdad(int edad) {
+	this->edad = edad;
+}
+void Persona::setDni(int dni) {
+	this->dni = dni;
+}
+
+//Retorna Valor
+string Persona::getNombre() {
+	return this->nombre;
+}
+int Persona::getEdad() {
+	return this->edad;
+}
+int Persona::getDni() {
+	return this->dni;
+}
+//algoSesion2
+//SESION 2 CLASES Y OBJETOS
+#include"pch.h"
+#include"Persona.h"
+#include<iostream>
+#include<conio.h>
+#include<stdlib.h>
+using namespace std;
+using namespace System;
+
+
+int main() {
+	//definimos arreglos con clases
+	int n = 2;
+	Persona* ale = new Persona();
+	Persona* pablo = new Persona("Pablo Marmol",30,87456321);
+	
+	Persona* personas = new Persona[n];
+	personas[0] = *ale;
+	personas[1] = *pablo;
+
+	for (int i = 0; i < n; i++){
+		cout << "Nombre: " << personas[i].getNombre()<<endl;
+		cout << "Edad: " << personas[i].getEdad()<<endl;
+		cout << "DNI: " << personas[i].getDni()<<endl;
+	}
+
+
+	delete ale;
+	delete pablo;
+	system("pause>0");
+	return 0;
+}
