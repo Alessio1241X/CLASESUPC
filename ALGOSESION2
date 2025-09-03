@@ -123,3 +123,89 @@ int main() {
 	system("pause>0");
 	return 0;
 }
+//REALIZAR COMO TAREA
+//SESION 2 CLASES Y OBJETOS
+#include"pch.h"
+#include"Persona.h"
+#include<iostream>
+#include<conio.h>
+#include<stdlib.h>
+using namespace std;
+using namespace System;
+//& es una referencia, se modifica la variable original
+void agregar(Persona*&arrOriginal,int &n,int& tam,Persona*objeto) {
+	if (n == tam) {
+	//si tam=0, el nuevo tamaño es 2, sino es verdad cambia a tam*2
+		int nuevoTam = (tam == 0) ? 2 : tam * 2;
+		Persona* arrCopia = new Persona[nuevoTam];
+		for (int i = 0; i < n; i++)	{
+			arrCopia[i] = arrOriginal[i];
+		}
+		delete[] arrOriginal;
+		arrOriginal = arrCopia;
+		tam = nuevoTam;
+	}
+	//si no se cumple aumenta en el arreglo
+	arrOriginal[n++] = *objeto;
+}
+
+void eliminar(Persona*& arrOriginal, int& n, int& tam, Persona* objeto) {
+	if (n == tam) {
+		//si tam=0, el nuevo tamaño es 2, sino es verdad cambia a tam*2
+		int nuevoTam = (tam == 0) ? 2 : tam * 2;
+		Persona* arrCopia = new Persona[nuevoTam];
+		for (int i = 0; i < n; i++) {
+			arrCopia[i] = arrOriginal[i];
+		}
+		delete[] arrOriginal;
+		arrOriginal = arrCopia;
+		tam = nuevoTam;
+	}
+	//si no se cumple aumenta en el arreglo
+	arrOriginal[n--] = *objeto;
+}
+
+void listar(Persona* personas, int n) {
+	for (int i = 0; i < n; i++) {
+		cout << "Nombre: " << personas[i].getNombre() << endl;
+		cout << "Edad: " << personas[i].getEdad() << endl;
+		cout << "DNI: " << personas[i].getDni() << endl;
+	}
+}
+
+void ordenar(Persona* personas, int n) {
+
+
+
+}
+double calcularPromedioEdades(Persona* personas, int n) {
+
+}
+void menuOpciones() {
+
+
+}
+
+int main() {
+	//definimos arreglos con clases
+	int n = 0,tam=0;
+	Persona* ale = new Persona();
+	Persona* pablo = new Persona("Pablo Marmol",30,87456321);
+	Persona* personas = new Persona[n];
+	
+
+
+
+
+
+	agregar(personas, n, tam, ale);
+	agregar(personas, n, tam, pablo);
+	listar(personas, n);
+
+
+	delete ale;
+	delete pablo;
+	delete[] personas;
+	system("pause>0");
+	return 0;
+}
