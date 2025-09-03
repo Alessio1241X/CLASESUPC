@@ -1,0 +1,105 @@
+//Haciendo animacion de un personaje
+#include"pch.h"
+#include<iostream>
+#include<conio.h>
+#include<stdlib.h>
+using namespace std;
+using namespace System;
+
+//Paso 1,realizar la estructura del personaje 
+struct Personaje {
+	int x, y;
+	string cabeza, cuerpo, pies;
+};
+//Paso 2 , realizamos la construccion del personaje
+Personaje* construirPersonaje(string c, string cu, string p, int x, int y) {
+	Personaje* pj = new Personaje;//Asignamos el nombre a la variable pj y lo guardamos en memoria dinamica
+	pj->cabeza = c;
+	pj->cuerpo = cu;
+	pj->pies = p;
+	pj->x = x;
+	pj->y = y;
+	return pj;
+}
+//Paso 3, Dibujamos el personaje
+void dibujarPersonaje(Personaje* pj) {
+	Console::SetCursorPosition(pj->x, pj->y); cout << pj->cabeza;
+	Console::SetCursorPosition(pj->x, pj->y + 1); cout << pj->cuerpo;
+	Console::SetCursorPosition(pj->x, pj->y + 2); cout << pj->pies;
+}
+//Paso 4,Borrar el personaje
+void borrarPersonaje(Personaje* pj) {
+	Console::SetCursorPosition(pj->x, pj->y); cout << "     ";
+	Console::SetCursorPosition(pj->x, pj->y + 1); cout << "     ";
+	Console::SetCursorPosition(pj->x, pj->y + 2); cout << "       ";
+}
+//Paso 5 ,mover el personaje
+void moverPersonaje(Personaje* pj, char tecla) {
+	if (tecla == 'w'||tecla=='i'||tecla=='t') pj->y--;
+	if (tecla == 's'||tecla=='k'||tecla=='g') pj->y++;
+	if (tecla == 'a'||tecla=='j'||tecla=='f') pj->x--;
+	if (tecla == 'd'||tecla=='l'||tecla=='h') pj->x++;
+}
+
+void ubicacion_Personaje() {
+	Console::SetCursorPosition(8, 4);
+	cout << "Personaje 1";
+}
+int main() {
+	Personaje* p1 = construirPersonaje("  O ", "/ | /", " |  |", 10, 5);
+	Personaje* p2 = construirPersonaje("  O ", "! # !", " |  |", 18, 10);
+	Personaje* p3 = construirPersonaje("  O ", "( # %", " |_  |_", 25, 15);
+	int opcion = 0,cant=0;
+	cout << "CUANTOS PERSONAJES GENERAR (1 al 4) "<<endl;
+	cin >> cant;
+	system("cls");
+	if (cant >= 1) dibujarPersonaje(p1);
+	if (cant >= 2) dibujarPersonaje(p2);
+	if (cant >= 3) dibujarPersonaje(p3);
+
+	Console::SetCursorPosition(0, 0);
+	cout << "ELIJA UN PERSONAJE: " << endl;
+	cin >> opcion;
+	system("cls");
+	char letra;
+	
+	while (true) {
+		if (_kbhit()) {
+			char tecla = _getch();
+
+			if (cant >= 1) {
+				if(opcion==1) {
+						if (tecla == 'w' || tecla == 'a' || tecla == 's' || tecla == 'd') {
+							borrarPersonaje(p1);
+							moverPersonaje(p1, tecla);
+							dibujarPersonaje(p1);
+						}
+				}
+			}
+
+			if (cant >= 2) {
+				if (opcion == 2) {
+					if (tecla == 'i' || tecla == 'j' || tecla == 'k' || tecla == 'l') {
+						borrarPersonaje(p2);
+						moverPersonaje(p2, tecla);
+						dibujarPersonaje(p2);
+					}
+				}
+			}
+
+			if (cant >= 3) {
+				if (opcion == 3) {
+
+					if (tecla == 't' || tecla == 'f' || tecla == 'g' || tecla == 'h') {
+						borrarPersonaje(p3);
+						moverPersonaje(p3, tecla);
+						dibujarPersonaje(p3);
+					}
+				}
+			}
+		}
+	}
+	delete p1,p2,p3;
+	system("pause>0");
+	return 0;
+}
